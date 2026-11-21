@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>A1CSugar.com — Prediabetes &amp; Metabolic Health Utility</title>
-  <meta name="description" content="100% client-side, privacy-first A1C to Blood Sugar converter, daily glucose & blood pressure logger, 3-month estimated A1C engine, and actionable science.">
+  <meta name="description" content="100% client-side, privacy-first A1C to Blood Sugar converter, daily glucose logger, 3-month estimated A1C engine, and actionable science.">
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Google Fonts: Inter -->
@@ -167,7 +167,7 @@
       .no-print {
         display: none !important;
       }
-      #tab-panel-8 {
+      #tab-panel-7 {
         display: block !important;
         box-shadow: none !important;
         border: none !important;
@@ -218,14 +218,14 @@
           </svg>
           <span>On-Device Log Storage • Zero Logins</span>
         </div>
-        <button type="button" onclick="switchTab(8); window.print();" class="inline-flex items-center gap-2 bg-white text-[#0F4C81] hover:bg-sky-50 font-bold px-4 py-2 rounded-xl text-sm shadow-sm transition touch-target">
+        <button type="button" onclick="switchTab(7); window.print();" class="inline-flex items-center gap-2 bg-white text-[#0F4C81] hover:bg-sky-50 font-bold px-4 py-2 rounded-xl text-sm shadow-sm transition touch-target">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
           <span>Print Doctor Report</span>
         </button>
       </div>
     </div>
 
-    <!-- 10-TAB NAVIGATION BAR WITH HIGH-VISIBILITY SCROLLBAR -->
+    <!-- 9-TAB NAVIGATION BAR WITH HIGH-VISIBILITY SCROLLBAR -->
     <nav class="bg-[#0A355C] border-t border-sky-800/70" aria-label="Main Navigation">
       <div class="max-w-7xl mx-auto px-2 sm:px-4 overflow-x-auto nav-scrollbar pb-1.5">
         <div class="flex space-x-1.5 py-2 min-w-max" role="tablist">
@@ -249,16 +249,13 @@
             <span>6. Weight Impact</span>
           </button>
           <button id="tab-btn-7" type="button" onclick="switchTab(7)" role="tab" aria-selected="false" tabindex="-1" class="tab-btn touch-target px-4 py-2.5 rounded-xl font-bold text-base transition flex items-center gap-2 text-sky-100 hover:bg-sky-900/60">
-            <span>7. Top 20 Tips &amp; Guides</span>
+            <span>7. Doctor Report</span>
           </button>
           <button id="tab-btn-8" type="button" onclick="switchTab(8)" role="tab" aria-selected="false" tabindex="-1" class="tab-btn touch-target px-4 py-2.5 rounded-xl font-bold text-base transition flex items-center gap-2 text-sky-100 hover:bg-sky-900/60">
-            <span>8. Doctor Report</span>
+            <span>8. My 6.1% Story &amp; Kidneys</span>
           </button>
           <button id="tab-btn-9" type="button" onclick="switchTab(9)" role="tab" aria-selected="false" tabindex="-1" class="tab-btn touch-target px-4 py-2.5 rounded-xl font-bold text-base transition flex items-center gap-2 text-sky-100 hover:bg-sky-900/60">
-            <span>9. My 6.1% Story &amp; Kidneys</span>
-          </button>
-          <button id="tab-btn-10" type="button" onclick="switchTab(10)" role="tab" aria-selected="false" tabindex="-1" class="tab-btn touch-target px-4 py-2.5 rounded-xl font-bold text-base transition flex items-center gap-2 text-sky-100 hover:bg-sky-900/60">
-            <span>10. App Shortcut</span>
+            <span>9. App Shortcut</span>
           </button>
         </div>
       </div>
@@ -279,7 +276,7 @@
               Instant Daily Log • Press Enter to Save
             </span>
             <h1 class="text-xl md:text-2xl font-extrabold">
-              Quick Data Entry: Log Your Blood Sugar &amp; Blood Pressure
+              Quick Data Entry: Log Your Blood Sugar
             </h1>
           </div>
           <div class="text-sky-100 text-sm font-semibold">
@@ -296,7 +293,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-5">
               
               <!-- Blood Sugar Reading (mg/dL) -->
-              <div class="lg:col-span-2">
+              <div class="lg:col-span-3">
                 <label for="home-bg-input" class="block font-extrabold text-slate-900 mb-1.5 text-base">
                   Blood Sugar
                 </label>
@@ -342,36 +339,8 @@
                 <p class="text-xs font-semibold text-slate-600 mt-1">Determines Normal vs. High</p>
               </div>
 
-              <!-- Optional Blood Pressure (Systolic / Diastolic) -->
-              <div class="lg:col-span-2">
-                <label class="block font-extrabold text-slate-900 mb-1.5 text-base">
-                  BP <span class="text-xs font-bold text-slate-500">(Optional)</span>
-                </label>
-                <div class="grid grid-cols-2 gap-1.5">
-                  <input
-                    type="number"
-                    id="home-sys-input"
-                    min="60"
-                    max="260"
-                    placeholder="Sys"
-                    class="fillable-blank w-full text-center"
-                    aria-label="Systolic Blood Pressure"
-                  >
-                  <input
-                    type="number"
-                    id="home-dia-input"
-                    min="40"
-                    max="160"
-                    placeholder="Dia"
-                    class="fillable-blank w-full text-center"
-                    aria-label="Diastolic Blood Pressure"
-                  >
-                </div>
-                <p class="text-xs font-semibold text-slate-600 mt-1">Sys / Dia mmHg</p>
-              </div>
-
               <!-- Meal / Exercise Note -->
-              <div class="lg:col-span-2">
+              <div class="lg:col-span-3">
                 <label for="home-note-input" class="block font-extrabold text-slate-900 mb-1.5 text-base">
                   Note <span class="text-xs font-bold text-slate-500">(Optional)</span>
                 </label>
@@ -390,7 +359,7 @@
             <!-- Submit Bar & Inline Error Box -->
             <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pt-2 border-t border-slate-200">
               <div id="home-entry-error" class="text-red-700 bg-red-50 border border-red-300 px-3.5 py-2 rounded-xl font-bold text-sm hidden" role="alert">
-                Please enter at least a Blood Sugar reading or a Blood Pressure reading before pressing Enter.
+                Please enter a Blood Sugar reading before pressing Enter.
               </div>
               <div class="text-sm text-slate-600 font-medium">
                 <span class="font-bold text-[#0F4C81]">Tip:</span> Press <kbd class="px-2 py-0.5 bg-slate-200 text-slate-900 rounded font-bold text-xs">Enter</kbd> inside any box—your status pops up right here with an <strong class="text-red-700">✕</strong> button.
@@ -470,7 +439,7 @@
           </div>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
           <div class="bg-slate-50 border-2 border-slate-200 rounded-2xl p-4">
             <span class="text-xs font-extrabold uppercase text-slate-600">Rolling Avg Sugar (eAG)</span>
             <div id="tracker-avg-bg" class="text-3xl font-black text-slate-900 mt-1">-- mg/dL</div>
@@ -485,11 +454,6 @@
             <span class="text-xs font-extrabold uppercase text-emerald-900">3-Month Baseline Delta</span>
             <div id="tracker-a1c-delta" class="text-3xl font-black text-emerald-800 mt-1">--</div>
             <p class="text-xs font-semibold text-emerald-900 mt-1">Compared to starting lab A1C</p>
-          </div>
-          <div class="bg-slate-50 border-2 border-slate-200 rounded-2xl p-4">
-            <span class="text-xs font-extrabold uppercase text-slate-600">Avg Blood Pressure</span>
-            <div id="tracker-avg-bp" class="text-3xl font-black text-slate-900 mt-1">-- / --</div>
-            <p id="tracker-bp-status" class="text-xs font-bold text-slate-600 mt-1">AHA Category: No BP logged</p>
           </div>
         </div>
 
@@ -540,8 +504,6 @@
                 <th class="p-3.5 border-r border-sky-800 whitespace-nowrap">Meal Timing Context</th>
                 <th class="p-3.5 border-r border-sky-800 whitespace-nowrap">Blood Sugar (mg/dL)</th>
                 <th class="p-3.5 border-r border-sky-800 whitespace-nowrap">Reference Range</th>
-                <th class="p-3.5 border-r border-sky-800 whitespace-nowrap">Blood Pressure</th>
-                <th class="p-3.5 border-r border-sky-800 whitespace-nowrap">BP Category</th>
                 <th class="p-3.5 border-r border-sky-800">Note</th>
                 <th class="p-3.5 text-center whitespace-nowrap">Delete</th>
               </tr>
@@ -565,7 +527,7 @@
               Real-Time Analytics Engine
             </span>
             <h1 class="text-2xl md:text-3xl font-extrabold text-slate-900 mt-1">
-              Your Blood Sugar &amp; Blood Pressure Statistics
+              Your Blood Sugar Statistics
             </h1>
             <p class="text-slate-600 text-sm mt-1">
               Calculated automatically from all readings stored on your device.
@@ -577,7 +539,7 @@
         </div>
 
         <!-- Top Summary Stat Cards -->
-        <div id="stats-overview-cards" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div id="stats-overview-cards" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <!-- Populated dynamically -->
         </div>
 
@@ -739,16 +701,6 @@
                   Fasting: <strong>&ge; 126 mg/dL</strong> • 2-Hr Post-Meal: <strong>&ge; 200 mg/dL</strong>
                 </p>
               </div>
-
-              <div class="p-3 rounded-xl bg-sky-50 border border-sky-300">
-                <div class="font-extrabold text-[#0F4C81] flex justify-between">
-                  <span>Blood Pressure (AHA Guidelines)</span>
-                  <span>Kidney &amp; Heart Shield</span>
-                </div>
-                <p class="text-slate-800 mt-0.5">
-                  Normal: <strong>&lt;120 / &lt;80</strong> • Elevated: <strong>120–129 / &lt;80</strong> • Stage 1: <strong>130–139 or 80–89</strong> • Stage 2: <strong>&ge;140 or &ge;90</strong>
-                </p>
-              </div>
             </div>
           </div>
 
@@ -805,40 +757,14 @@
     </section>
 
     <!-- ================================================================= -->
-    <!-- TAB 7: TOP 20 PRACTICAL TIPS & ACTIONABLE GUIDES                  -->
+    <!-- TAB 7: ONE-CLICK PRINTABLE DOCTOR REPORT                          -->
     <!-- ================================================================= -->
-    <section id="tab-panel-7" class="space-y-8 hidden" role="tabpanel" aria-labelledby="tab-btn-7">
-      <div class="bg-white rounded-2xl shadow-md border border-slate-200 p-6 md:p-7">
-        <div class="pb-4 mb-6 border-b border-slate-200">
-          <span class="text-xs font-extrabold uppercase tracking-wider text-[#0F4C81] bg-sky-100 px-2.5 py-1 rounded-md">
-            High-ROI Daily Habits • Zero Fluff
-          </span>
-          <h1 class="text-2xl md:text-3xl font-extrabold text-slate-900 mt-1">
-            Top 20 Practical Blood Sugar &amp; Prediabetes Tips
-          </h1>
-          <p class="text-slate-600 mt-1">
-            Simple, real-world levers that flatten post-meal glucose spikes without starving yourself.
-          </p>
-          <div class="mt-4 p-3.5 rounded-xl bg-amber-50 border border-amber-400 text-xs sm:text-sm font-semibold text-amber-950">
-            <strong>Medication Safety Note:</strong> These tips are general educational habits only. If you take insulin or blood-sugar-lowering medications (such as sulfonylureas), consult your doctor before changing meal timing, carbohydrate intake, or physical activity to avoid low blood sugar.
-          </div>
-        </div>
-
-        <div id="top-20-tips-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <!-- Populated dynamically -->
-        </div>
-      </div>
-    </section>
-
-    <!-- ================================================================= -->
-    <!-- TAB 8: ONE-CLICK PRINTABLE DOCTOR REPORT                          -->
-    <!-- ================================================================= -->
-    <section id="tab-panel-8" class="space-y-6 hidden" role="tabpanel" aria-labelledby="tab-btn-8">
+    <section id="tab-panel-7" class="space-y-6 hidden" role="tabpanel" aria-labelledby="tab-btn-7">
       <div class="bg-white rounded-2xl shadow-md border border-slate-200 p-6 md:p-8 print-card">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b-2 border-slate-900">
           <div>
             <div class="text-xs font-extrabold uppercase tracking-wider text-[#0F4C81]">A1CSugar.com • Patient Self-Monitoring Summary</div>
-            <h1 class="text-2xl md:text-3xl font-black text-slate-900 mt-1">Doctor Visit Blood Sugar &amp; BP Report</h1>
+            <h1 class="text-2xl md:text-3xl font-black text-slate-900 mt-1">Doctor Visit Blood Sugar Report</h1>
             <p id="report-generated-date" class="text-sm font-semibold text-slate-600 mt-0.5"></p>
           </div>
           <button type="button" onclick="window.print()" class="no-print touch-target bg-[#0F4C81] hover:bg-[#0A355C] text-white font-extrabold px-6 py-3 rounded-xl shadow flex items-center gap-2">
@@ -850,7 +776,7 @@
           <strong>Disclaimer:</strong> Patient-entered home monitoring log generated locally on A1CSugar.com. Estimated A1C uses the reverse ADAG formula and is not a substitute for clinical laboratory HbA1c testing. Range labels are non-diagnostic educational references only.
         </div>
 
-        <div id="doctor-report-summary" class="grid grid-cols-2 md:grid-cols-4 gap-4 my-6">
+        <div id="doctor-report-summary" class="grid grid-cols-1 sm:grid-cols-3 gap-4 my-6">
           <!-- Populated dynamically -->
         </div>
 
@@ -863,7 +789,6 @@
                 <th class="p-3">Timing Context</th>
                 <th class="p-3">Blood Sugar</th>
                 <th class="p-3">Status</th>
-                <th class="p-3">Blood Pressure</th>
                 <th class="p-3">Notes</th>
               </tr>
             </thead>
@@ -876,9 +801,9 @@
     </section>
 
     <!-- ================================================================= -->
-    <!-- TAB 9: FOUNDER'S 6.1% STORY & KIDNEY PROTECTION                   -->
+    <!-- TAB 8: FOUNDER'S 6.1% STORY & KIDNEY PROTECTION                   -->
     <!-- ================================================================= -->
-    <section id="tab-panel-9" class="space-y-8 hidden" role="tabpanel" aria-labelledby="tab-btn-9">
+    <section id="tab-panel-8" class="space-y-8 hidden" role="tabpanel" aria-labelledby="tab-btn-8">
       <div class="bg-white rounded-2xl shadow-md border border-slate-200 p-6 md:p-8 space-y-6">
         <div class="border-b border-slate-200 pb-4">
           <span class="text-xs font-extrabold uppercase tracking-wider text-amber-900 bg-amber-100 px-2.5 py-1 rounded-md">
@@ -902,7 +827,7 @@
               The Blood Sugar + Blood Pressure + Kidney Connection
             </h2>
             <p class="text-slate-800 text-base">
-              Even in the prediabetes range (5.7%–6.4%), repeated post-meal glucose spikes combined with elevated blood pressure put extra filtration stress on the tiny blood vessels in your kidneys (nephrons). That is why A1CSugar.com tracks <strong>both Blood Sugar and Blood Pressure side-by-side</strong>—and why asking your doctor for an annual <strong>uACR (Urine Albumin-to-Creatinine Ratio)</strong> test alongside your <strong>eGFR</strong> is one of the smartest preventative steps you can take.
+              Even in the prediabetes range (5.7%–6.4%), repeated post-meal glucose spikes combined with elevated blood pressure put extra filtration stress on the tiny blood vessels in your kidneys (nephrons). That is why tracking your daily blood sugar trends—and asking your doctor about your blood pressure and an annual <strong>uACR (Urine Albumin-to-Creatinine Ratio)</strong> test alongside your <strong>eGFR</strong>—is one of the smartest preventative steps you can take.
             </p>
           </div>
         </div>
@@ -910,9 +835,9 @@
     </section>
 
     <!-- ================================================================= -->
-    <!-- TAB 10: SAVE TO HOME SCREEN (APP SHORTCUT GUIDE)                   -->
+    <!-- TAB 9: SAVE TO HOME SCREEN (APP SHORTCUT GUIDE)                   -->
     <!-- ================================================================= -->
-    <section id="tab-panel-10" class="space-y-8 hidden" role="tabpanel" aria-labelledby="tab-btn-10">
+    <section id="tab-panel-9" class="space-y-8 hidden" role="tabpanel" aria-labelledby="tab-btn-9">
       <div class="bg-white rounded-2xl shadow-md border border-slate-200 p-6 md:p-8">
         <div class="border-b border-slate-200 pb-4 mb-6">
           <span class="text-xs font-extrabold uppercase tracking-wider text-[#0F4C81] bg-sky-100 px-2.5 py-1 rounded-md">
@@ -958,7 +883,7 @@
       <div>
         <p class="font-extrabold text-white text-base">A1CSugar.com — Privacy-First Metabolic Health Utility</p>
         <p class="text-slate-400 mt-1">
-          All blood sugar, blood pressure, and note entries stay 100% on your device via browser localStorage. Your logged health readings never leave your device.
+          All blood sugar and note entries stay 100% on your device via browser localStorage. Your logged health readings never leave your device.
         </p>
       </div>
       <div class="flex flex-wrap items-center gap-4 font-bold">
@@ -1025,7 +950,7 @@
             <strong>4. No Doctor-Patient Relationship, Limitation of Liability &amp; Governing Law:</strong> Using A1CSugar.com does not create a doctor-patient relationship. This site is intended for adults 18 and older and is provided "as is" without warranties of any kind. By using this site, you agree that the creator is not liable for any health decisions, actions, or outcomes resulting from your use of these educational tools. These terms are governed by the laws of the State of North Dakota.
           </p>
           <p>
-            <strong>5. Independent Tool (No Affiliation):</strong> A1CSugar.com is an independent educational tool and is not affiliated with, endorsed by, or sponsored by the ADA, AHA, or NIH.
+            <strong>5. Independent Tool (No Affiliation):</strong> A1CSugar.com is an independent educational tool and is not affiliated with, endorsed by, or sponsored by the ADA or NIH.
           </p>
         </div>
       </div>
@@ -1057,29 +982,6 @@
       bedtime: 'Bedtime / General Check'
     };
 
-    const TOP_20_TIPS = [
-      { title: '1. Take a 10-Minute Walk After Meals', desc: 'Contracting leg muscles right after eating pulls glucose directly out of your bloodstream without needing extra insulin.' },
-      { title: '2. Eat Veggies & Protein First, Carbs Last', desc: 'Eating fiber and protein before starches slows stomach emptying and may help flatten the 1-hour post-meal glucose peak.' },
-      { title: '3. Never Drink Naked Sugar', desc: 'Regular soda, sweet tea, and fruit juice hit the bloodstream in minutes. Swap for water, unsweetened iced tea, or sparkling water.' },
-      { title: '4. Pair Every Carb With Protein or Healthy Fat', desc: 'If you eat an apple or crackers, add peanut butter, cheese, or almonds to blunt the glycemic spike.' },
-      { title: '5. Test at 1-Hour AND 2-Hours Post-Meal', desc: 'Many people with prediabetes spike sharply at 60 minutes even if they look normal by 120 minutes. Catching the 1-hr peak reveals hidden triggers.' },
-      { title: '6. Aim for 5–7% Gradual Weight Loss', desc: 'Modest weight loss (such as 10–14 lbs at 200 lbs) can support improved insulin sensitivity over time.' },
-      { title: '7. Prioritize 7–8 Hours of Quality Sleep', desc: 'Just one night of 4–5 hours of sleep induces temporary insulin resistance the next morning.' },
-      { title: '8. Watch Out for "Healthy" Breakfast Traps', desc: 'Instant oatmeal, bagels, and orange juice trigger massive morning spikes when cortisol is already high. Choose eggs, Greek yogurt, or cottage cheese.' },
-      { title: '9. Add 2 Sessions of Resistance Training Weekly', desc: 'Skeletal muscle is your largest glucose storage tank. More muscle mass means better blood sugar disposal 24/7.' },
-      { title: '10. Stay Hydrated All Day', desc: 'Mild dehydration concentrates blood glucose and makes your kidneys work harder to flush excess sugar.' },
-      { title: '11. Ask About Diluted Vinegar Before Starchy Meals', desc: 'Some small studies suggest diluted vinegar before meals may modestly slow starch digestion; check with your doctor first, especially if you have reflux or take medications.' },
-      { title: '12. Track Blood Pressure Alongside Blood Sugar', desc: 'High glucose and high blood pressure amplify each other’s impact on kidneys and arteries. Keep both logged together.' },
-      { title: '13. Cook, Cool, and Reheat Starches', desc: 'Cooling cooked potatoes, rice, or pasta overnight increases resistant starch, lowering their glycemic impact.' },
-      { title: '14. Cut Late-Night Snacking 3 Hours Before Bed', desc: 'Insulin sensitivity drops at night. Late snacks keep overnight fasting glucose elevated.' },
-      { title: '15. Manage Stress Breathing Before Meals', desc: 'High cortisol tells your liver to dump stored glucose. Five slow breaths before eating helps.' },
-      { title: '16. Check Hidden Sugars in Sauces & Dressings', desc: 'Ketchup, BBQ sauce, teriyaki, and low-fat dressings often pack 10–15g of added sugar per two tablespoons.' },
-      { title: '17. Wash Hands Before Every Fingerstick', desc: 'Microscopic fruit juice or lotion on your finger can falsely inflate a meter reading by 50+ mg/dL.' },
-      { title: '18. Use the Same Finger Side, Not the Pad', desc: 'Pricking the side of your fingertip hurts far less and yields cleaner drops than the center pad.' },
-      { title: '19. Ask Your Doctor for uACR + eGFR Annually', desc: 'A urine albumin test (uACR) catches early kidney strain years before symptoms ever appear.' },
-      { title: '20. Focus on 90-Day Trends, Not One Bad Number', desc: 'One high reading is data, not failure. Use it to learn how a specific meal affects you and adjust next time.' }
-    ];
-
     /* ------------------------------------------------------------------- */
     /* INITIALIZATION                                                      */
     /* ------------------------------------------------------------------- */
@@ -1090,21 +992,18 @@
       renderAllViews();
       setA1CPreset(6.1);
       calcWeightImpact();
-      renderTop20Tips();
       updateReportDate();
 
       // Ensure pressing Enter anywhere inside the Quick Entry Form submits cleanly
       const form = document.getElementById('home-quick-entry-form');
-      if (form) {
-        form.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' && e.target.tagName !== 'BUTTON') {
-            e.preventDefault();
-            handleQuickEntrySubmit(e);
-          }
-        });
-      }
+      form.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && e.target.tagName !== 'BUTTON') {
+          e.preventDefault();
+          handleQuickEntrySubmit(e);
+        }
+      });
 
-      // WCAG Left/Right arrow-key navigation for the 10-tab bar
+      // WCAG Left/Right arrow-key navigation for the 9-tab bar
       const tabList = document.querySelector('[role="tablist"]');
       if (tabList) {
         tabList.addEventListener('keydown', (e) => {
@@ -1202,39 +1101,10 @@
     }
 
     /* ------------------------------------------------------------------- */
-    /* MODAL HANDLERS                                                      */
-    /* ------------------------------------------------------------------- */
-    function openLegalModal() {
-      const modal = document.getElementById('legal-modal');
-      if (modal) {
-        modal.classList.remove('hidden');
-        modal.classList.add('flex');
-      }
-    }
-
-    function closeLegalModal() {
-      const modal = document.getElementById('legal-modal');
-      if (modal) {
-        modal.classList.add('hidden');
-        modal.classList.remove('flex');
-      }
-    }
-
-    function escapeHTML(str) {
-      if (!str) return '';
-      return String(str)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#039;');
-    }
-
-    /* ------------------------------------------------------------------- */
     /* TAB NAVIGATION                                                      */
     /* ------------------------------------------------------------------- */
     function switchTab(tabNum) {
-      for (let i = 1; i <= 10; i++) {
+      for (let i = 1; i <= 9; i++) {
         const panel = document.getElementById(`tab-panel-${i}`);
         const btn = document.getElementById(`tab-btn-${i}`);
         if (!panel || !btn) continue;
@@ -1355,15 +1225,6 @@
       }
     }
 
-    function evaluateBP(sys, dia) {
-      if (!sys || !dia || isNaN(sys) || isNaN(dia)) return null;
-      if (sys >= 180 || dia >= 120) return { label: 'Very High BP Reference Range (≥180/120) — Consult a Healthcare Provider Promptly', color: 'text-red-800 font-black' };
-      if (sys >= 140 || dia >= 90) return { label: 'Higher BP Ref. Range (≥140 or ≥90)', color: 'text-red-700 font-bold' };
-      if (sys >= 130 || dia >= 80) return { label: 'Elevated/Above-Target BP Ref. (130–139 or 80–89)', color: 'text-amber-800 font-bold' };
-      if (sys >= 120 && dia < 80) return { label: 'Slightly Elevated BP Ref. (120–129 / <80)', color: 'text-amber-700 font-bold' };
-      return { label: 'Normal BP Ref. (<120 / <80)', color: 'text-emerald-800 font-bold' };
-    }
-
     function formatDisplayDateTime(isoString) {
       if (!isoString) return '';
       const d = new Date(isoString);
@@ -1387,19 +1248,15 @@
       const bgEl = document.getElementById('home-bg-input');
       const dtEl = document.getElementById('home-datetime-input');
       const ctxEl = document.getElementById('home-context-input');
-      const sysEl = document.getElementById('home-sys-input');
-      const diaEl = document.getElementById('home-dia-input');
       const noteEl = document.getElementById('home-note-input');
       const errEl = document.getElementById('home-entry-error');
 
       const bgVal = bgEl.value.trim() !== '' ? parseInt(bgEl.value, 10) : null;
-      const sysVal = sysEl.value.trim() !== '' ? parseInt(sysEl.value, 10) : null;
-      const diaVal = diaEl.value.trim() !== '' ? parseInt(diaEl.value, 10) : null;
       const dtVal = dtEl.value || new Date().toISOString().slice(0, 16);
       const ctxVal = ctxEl.value;
       const noteVal = noteEl.value.trim();
 
-      if (bgVal === null && (sysVal === null || diaVal === null)) {
+      if (bgVal === null) {
         errEl.classList.remove('hidden');
         bgEl.focus();
         return;
@@ -1411,8 +1268,6 @@
         bg: bgVal,
         datetime: dtVal,
         context: ctxVal,
-        sys: sysVal,
-        dia: diaVal,
         note: noteVal
       };
 
@@ -1424,8 +1279,6 @@
 
       // Reset inputs for fast next entry while refreshing timestamp
       bgEl.value = '';
-      sysEl.value = '';
-      diaEl.value = '';
       noteEl.value = '';
       setDefaultDateTimeInput();
       bgEl.focus();
@@ -1436,17 +1289,12 @@
       if (!popup) return;
 
       const evalRes = evaluateGlucose(entry.bg, entry.context);
-      const bpRes = evaluateBP(entry.sys, entry.dia);
 
       const cardStyle = evalRes ? evalRes.bgClass : 'bg-sky-50 border-[#0F4C81] text-slate-900';
       const badgeStyle = evalRes ? evalRes.pillClass : 'bg-[#0F4C81] text-white';
-      const badgeText = evalRes ? evalRes.badge : 'BLOOD PRESSURE LOGGED';
-      const headline = entry.bg !== null
-        ? `Saved ${entry.bg} mg/dL (${CONTEXT_LABELS[entry.context] || entry.context})`
-        : `Saved BP ${entry.sys}/${entry.dia} mmHg`;
-      const subtext = evalRes
-        ? evalRes.advice
-        : (bpRes ? `AHA Classification: ${bpRes.label}` : 'Reading saved privately to your device.');
+      const badgeText = evalRes ? evalRes.badge : 'READING LOGGED';
+      const headline = `Saved ${entry.bg} mg/dL (${CONTEXT_LABELS[entry.context] || entry.context})`;
+      const subtext = evalRes ? evalRes.advice : 'Reading saved privately to your device.';
 
       popup.className = `entry-card-anim mb-6 p-4 md:p-5 rounded-2xl border-2 shadow-md flex items-start justify-between gap-4 ${cardStyle}`;
       popup.innerHTML = `
@@ -1457,7 +1305,6 @@
           </div>
           <div class="text-lg md:text-xl font-black">${headline}</div>
           <p class="text-sm font-semibold mt-1">${subtext}</p>
-          ${entry.sys && entry.dia && entry.bg !== null ? `<p class="text-xs font-extrabold mt-1">Also logged BP: ${entry.sys}/${entry.dia} mmHg (${bpRes ? bpRes.label : ''})</p>` : ''}
           ${entry.note ? `<p class="text-xs font-bold mt-1 opacity-90">Note: "${escapeHTML(entry.note)}"</p>` : ''}
         </div>
         <button type="button" onclick="dismissInlinePopup()" class="x-out-btn" title="Dismiss notification" aria-label="Dismiss confirmation popup">&times;</button>
@@ -1484,7 +1331,7 @@
 
     function clearAllLogs() {
       if (healthLogs.length === 0) return;
-      if (confirm('Delete all saved blood sugar and blood pressure readings from this device?')) {
+      if (confirm('Delete all saved blood sugar readings from this device?')) {
         healthLogs = [];
         saveToStorage();
         dismissInlinePopup();
@@ -1496,9 +1343,9 @@
       const now = Date.now();
       const makeUniqueId = () => `${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
       const samples = [
-        { id: makeUniqueId(), bg: 96, datetime: new Date(now - 3600 * 1000 * 2).toISOString().slice(0, 16), context: 'fasting', sys: 118, dia: 76, note: 'Morning wake-up check' },
-        { id: makeUniqueId(), bg: 134, datetime: new Date(now - 3600 * 1000 * 18).toISOString().slice(0, 16), context: 'post2hr', sys: 121, dia: 78, note: 'Chicken salad + 15 min walk' },
-        { id: makeUniqueId(), bg: 162, datetime: new Date(now - 3600 * 1000 * 42).toISOString().slice(0, 16), context: 'post1hr', sys: null, dia: null, note: '1-hr peak after pasta dinner' }
+        { id: makeUniqueId(), bg: 96, datetime: new Date(now - 3600 * 1000 * 2).toISOString().slice(0, 16), context: 'fasting', note: 'Morning wake-up check' },
+        { id: makeUniqueId(), bg: 134, datetime: new Date(now - 3600 * 1000 * 18).toISOString().slice(0, 16), context: 'post2hr', note: 'Chicken salad + 15 min walk' },
+        { id: makeUniqueId(), bg: 162, datetime: new Date(now - 3600 * 1000 * 42).toISOString().slice(0, 16), context: 'post1hr', note: '1-hr peak after pasta dinner' }
       ];
       healthLogs = [...samples, ...healthLogs];
       healthLogs.sort((a, b) => new Date(b.datetime) - new Date(a.datetime));
@@ -1507,7 +1354,7 @@
     }
 
     /* ------------------------------------------------------------------- */
-    /* RENDER ALL SYNCHRONIZED VIEWS (TABS 1, 2, 3, 4, AND 8)              */
+    /* RENDER ALL SYNCHRONIZED VIEWS (TABS 1, 2, 3, 4, AND 7)              */
     /* ------------------------------------------------------------------- */
     function renderAllViews() {
       const count = healthLogs.length;
@@ -1524,15 +1371,6 @@
         avgBg = Math.round(sumBg / bgReadings.length);
         // Reverse ADAG Formula: A1C = (eAG + 46.7) / 28.7
         estA1C = ((avgBg + 46.7) / 28.7).toFixed(1);
-      }
-
-      // Calculate Average BP
-      const bpReadings = healthLogs.filter(l => l.sys && l.dia);
-      let avgSys = null;
-      let avgDia = null;
-      if (bpReadings.length > 0) {
-        avgSys = Math.round(bpReadings.reduce((a, b) => a + b.sys, 0) / bpReadings.length);
-        avgDia = Math.round(bpReadings.reduce((a, b) => a + b.dia, 0) / bpReadings.length);
       }
 
       // Update Tab 1 Badge
@@ -1560,14 +1398,10 @@
         deltaEl.className = 'text-3xl font-black text-emerald-800 mt-1';
       }
 
-      document.getElementById('tracker-avg-bp').textContent = (avgSys && avgDia) ? `${avgSys} / ${avgDia}` : '-- / --';
-      const bpEval = evaluateBP(avgSys, avgDia);
-      document.getElementById('tracker-bp-status').textContent = bpEval ? `AHA Category: ${bpEval.label}` : 'AHA Category: No BP logged';
-
       renderTab1List();
       renderTab3Spreadsheet();
-      renderTab4Statistics(bgReadings, bpReadings, avgBg, estA1C, avgSys, avgDia);
-      renderTab8Report(avgBg, estA1C, avgSys, avgDia);
+      renderTab4Statistics(bgReadings, avgBg, estA1C);
+      renderTab8Report(avgBg, estA1C);
     }
 
     function renderTab1List() {
@@ -1586,10 +1420,9 @@
 
       listEl.innerHTML = healthLogs.map(entry => {
         const gEval = evaluateGlucose(entry.bg, entry.context);
-        const bpEval = evaluateBP(entry.sys, entry.dia);
         const pillHtml = gEval
           ? `<span class="text-xs font-black uppercase px-2.5 py-0.5 rounded-md ${gEval.pillClass}">${gEval.badge}</span>`
-          : `<span class="text-xs font-black uppercase px-2.5 py-0.5 rounded-md bg-[#0F4C81] text-white">BP ONLY</span>`;
+          : '';
 
         return `
           <div class="p-4 rounded-2xl bg-slate-50 border-2 border-slate-200 hover:border-[#0F4C81] transition flex items-center justify-between gap-4">
@@ -1601,7 +1434,6 @@
               </div>
               <div class="flex flex-wrap items-baseline gap-4">
                 ${entry.bg !== null ? `<span class="text-xl font-black text-slate-900">${entry.bg} <span class="text-sm font-bold text-slate-600">mg/dL</span></span>` : ''}
-                ${entry.sys && entry.dia ? `<span class="text-base font-extrabold text-slate-800">BP: ${entry.sys}/${entry.dia} mmHg <span class="text-xs ${bpEval ? bpEval.color : ''}">(${bpEval ? bpEval.label : ''})</span></span>` : ''}
               </div>
               ${entry.note ? `<p class="text-sm font-medium text-slate-700">Note: ${escapeHTML(entry.note)}</p>` : ''}
             </div>
@@ -1621,8 +1453,8 @@
       if (healthLogs.length === 0) {
         tbody.innerHTML = `
           <tr>
-            <td colspan="9" class="p-8 text-center text-slate-500 font-semibold">
-              No entries logged yet. Go to <button onclick="switchTab(1)" class="text-[#0F4C81] underline font-bold">Tab 1 (Daily Log)</button> to add your first reading.
+            <td colspan="7" class="p-8 text-center text-slate-500 font-bold">
+              No readings logged yet. Enter readings on Tab 1 (Daily Log) to populate this spreadsheet.
             </td>
           </tr>
         `;
@@ -1631,331 +1463,310 @@
 
       tbody.innerHTML = healthLogs.map((entry, idx) => {
         const gEval = evaluateGlucose(entry.bg, entry.context);
-        const bpEval = evaluateBP(entry.sys, entry.dia);
-        const bgDisplay = entry.bg !== null ? `<span class="font-black text-slate-900 text-base">${entry.bg}</span>` : '<span class="text-slate-400">--</span>';
-        const bpDisplay = (entry.sys && entry.dia) ? `<span class="font-bold text-slate-900">${entry.sys}/${entry.dia}</span>` : '<span class="text-slate-400">--</span>';
-        const rangeBadge = gEval ? `<span class="text-xs font-extrabold uppercase px-2 py-0.5 rounded ${gEval.pillClass}">${gEval.badge}</span>` : '<span class="text-slate-400">--</span>';
-        const bpCatDisplay = bpEval ? `<span class="text-xs ${bpEval.color}">${bpEval.label}</span>` : '<span class="text-slate-400">--</span>';
+        const rowBg = idx % 2 === 0 ? 'bg-white' : 'bg-slate-50';
 
         return `
-          <tr class="hover:bg-slate-50 transition border-b border-slate-200">
-            <td class="p-3.5 border-r border-slate-200 font-bold text-slate-500">${healthLogs.length - idx}</td>
-            <td class="p-3.5 border-r border-slate-200 font-semibold text-slate-800 whitespace-nowrap">${formatDisplayDateTime(entry.datetime)}</td>
-            <td class="p-3.5 border-r border-slate-200 font-bold text-[#0F4C81] whitespace-nowrap">${CONTEXT_LABELS[entry.context] || entry.context}</td>
-            <td class="p-3.5 border-r border-slate-200">${bgDisplay}</td>
-            <td class="p-3.5 border-r border-slate-200 whitespace-nowrap">${rangeBadge}</td>
-            <td class="p-3.5 border-r border-slate-200 whitespace-nowrap">${bpDisplay}</td>
-            <td class="p-3.5 border-r border-slate-200">${bpCatDisplay}</td>
-            <td class="p-3.5 border-r border-slate-200 font-medium text-slate-700">${entry.note ? escapeHTML(entry.note) : '<span class="text-slate-400 italic">None</span>'}</td>
-            <td class="p-3.5 text-center">
-              <button type="button" onclick="deleteLogEntry('${entry.id}')" class="x-out-btn mx-auto" title="Delete entry" aria-label="Delete entry">&times;</button>
+          <tr class="${rowBg} hover:bg-sky-50/70 transition">
+            <td class="p-3 border-r border-slate-200 font-bold text-slate-500">${idx + 1}</td>
+            <td class="p-3 border-r border-slate-200 font-semibold whitespace-nowrap">${formatDisplayDateTime(entry.datetime)}</td>
+            <td class="p-3 border-r border-slate-200 font-medium">${CONTEXT_LABELS[entry.context] || entry.context}</td>
+            <td class="p-3 border-r border-slate-200 font-black text-slate-900">${entry.bg !== null ? entry.bg + ' mg/dL' : '--'}</td>
+            <td class="p-3 border-r border-slate-200">
+              ${gEval ? `<span class="inline-block text-xs font-black uppercase px-2 py-0.5 rounded ${gEval.pillClass}">${gEval.badge}</span>` : '<span class="text-slate-400 font-bold">--</span>'}
+            </td>
+            <td class="p-3 border-r border-slate-200 text-slate-700">${escapeHTML(entry.note || '')}</td>
+            <td class="p-2 text-center">
+              <button type="button" onclick="deleteLogEntry('${entry.id}')" class="x-out-btn" title="Delete row" aria-label="Delete row ${idx + 1}">&times;</button>
             </td>
           </tr>
         `;
       }).join('');
     }
 
-    /* ------------------------------------------------------------------- */
-    /* TAB 4: STATISTICS CALCULATIONS & DASHBOARD                          */
-    /* ------------------------------------------------------------------- */
-    function renderTab4Statistics(bgReadings, bpReadings, avgBg, estA1C, avgSys, avgDia) {
-      const cardsEl = document.getElementById('stats-overview-cards');
-      const barsEl = document.getElementById('stats-range-bars');
-      const breakdownEl = document.getElementById('stats-context-breakdown');
-      if (!cardsEl || !barsEl || !breakdownEl) return;
+    function renderTab4Statistics(bgReadings, avgBg, estA1C) {
+      const overviewEl = document.getElementById('stats-overview-cards');
+      const rangeBarsEl = document.getElementById('stats-range-bars');
+      const contextEl = document.getElementById('stats-context-breakdown');
+      if (!overviewEl || !rangeBarsEl || !contextEl) return;
 
-      const totalEntries = healthLogs.length;
+      const minBg = bgReadings.length > 0 ? Math.min(...bgReadings) : null;
+      const maxBg = bgReadings.length > 0 ? Math.max(...bgReadings) : null;
 
-      // Card 1: Total Checks
-      cardsEl.innerHTML = `
-        <div class="p-4 rounded-2xl bg-slate-50 border-2 border-slate-200">
-          <span class="text-xs font-extrabold uppercase text-slate-600">Total Logged Checks</span>
-          <div class="text-3xl font-black text-slate-900 mt-1">${totalEntries}</div>
-          <p class="text-xs font-semibold text-slate-600 mt-1">${bgReadings.length} Glucose / ${bpReadings.length} BP</p>
-        </div>
+      overviewEl.innerHTML = `
         <div class="p-4 rounded-2xl bg-sky-50 border-2 border-[#0F4C81]">
-          <span class="text-xs font-extrabold uppercase text-[#0F4C81]">Overall Avg Glucose</span>
-          <div class="text-3xl font-black text-[#0F4C81] mt-1">${avgBg ? avgBg + ' mg/dL' : '--'}</div>
-          <p class="text-xs font-semibold text-slate-700 mt-1">Rolling average</p>
-        </div>
-        <div class="p-4 rounded-2xl bg-emerald-50 border-2 border-emerald-300">
-          <span class="text-xs font-extrabold uppercase text-emerald-900">3-Month Est. A1C</span>
-          <div class="text-3xl font-black text-emerald-800 mt-1">${estA1C ? estA1C + '%' : '--'}</div>
-          <p class="text-xs font-semibold text-emerald-900 mt-1">Baseline: ${baselineA1C.toFixed(1)}%</p>
+          <div class="text-xs font-extrabold uppercase text-[#0F4C81]">Average Glucose / Est. A1C</div>
+          <div class="text-2xl font-black text-slate-900 mt-1">${avgBg ? avgBg + ' mg/dL' : '--'}</div>
+          <div class="text-xs font-bold text-[#0F4C81] mt-1">Est. A1C: ${estA1C ? estA1C + '%' : '--'} (${bgReadings.length} checks)</div>
         </div>
         <div class="p-4 rounded-2xl bg-slate-50 border-2 border-slate-200">
-          <span class="text-xs font-extrabold uppercase text-slate-600">Average Blood Pressure</span>
-          <div class="text-3xl font-black text-slate-900 mt-1">${(avgSys && avgDia) ? `${avgSys}/${avgDia}` : '--/--'}</div>
-          <p class="text-xs font-semibold text-slate-600 mt-1">mmHg average</p>
+          <div class="text-xs font-extrabold uppercase text-slate-600">Glucose Min / Max Span</div>
+          <div class="text-2xl font-black text-slate-900 mt-1">${minBg !== null ? minBg + ' – ' + maxBg : '--'}</div>
+          <div class="text-xs font-semibold text-slate-600 mt-1">Lowest to highest mg/dL logged</div>
         </div>
       `;
 
-      if (bgReadings.length === 0) {
-        barsEl.innerHTML = '<p class="text-slate-500 font-medium">Log blood sugar readings to see distribution breakdown.</p>';
-        breakdownEl.innerHTML = '<p class="text-slate-500 font-medium">Log blood sugar readings to see context averages.</p>';
-        return;
-      }
-
-      // Calculate Range Distribution
-      let counts = { normal: 0, elevated: 0, high: 0, low: 0 };
-      healthLogs.forEach(entry => {
-        const ev = evaluateGlucose(entry.bg, entry.context);
-        if (ev && ev.level) counts[ev.level]++;
-      });
-
-      const totalBg = bgReadings.length;
-      const pctNormal = Math.round((counts.normal / totalBg) * 100);
-      const pctElevated = Math.round((counts.elevated / totalBg) * 100);
-      const pctHigh = Math.round((counts.high / totalBg) * 100);
-      const pctLow = Math.round((counts.low / totalBg) * 100);
-
-      barsEl.innerHTML = `
-        <div>
-          <div class="flex justify-between text-sm font-bold text-emerald-900 mb-1">
-            <span>In Normal Target Range</span>
-            <span>${pctNormal}% (${counts.normal})</span>
-          </div>
-          <div class="w-full bg-slate-200 rounded-full h-3.5 overflow-hidden">
-            <div class="bg-emerald-600 h-3.5 rounded-full" style="width: ${pctNormal}%"></div>
-          </div>
-        </div>
-        <div>
-          <div class="flex justify-between text-sm font-bold text-amber-900 mb-1">
-            <span>Elevated Reference Zone</span>
-            <span>${pctElevated}% (${counts.elevated})</span>
-          </div>
-          <div class="w-full bg-slate-200 rounded-full h-3.5 overflow-hidden">
-            <div class="bg-amber-500 h-3.5 rounded-full" style="width: ${pctElevated}%"></div>
-          </div>
-        </div>
-        <div>
-          <div class="flex justify-between text-sm font-bold text-red-900 mb-1">
-            <span>Above Reference Target</span>
-            <span>${pctHigh}% (${counts.high})</span>
-          </div>
-          <div class="w-full bg-slate-200 rounded-full h-3.5 overflow-hidden">
-            <div class="bg-red-600 h-3.5 rounded-full" style="width: ${pctHigh}%"></div>
-          </div>
-        </div>
-        ${counts.low > 0 ? `
-        <div>
-          <div class="flex justify-between text-sm font-bold text-purple-900 mb-1">
-            <span>Below Reference (<70 mg/dL)</span>
-            <span>${pctLow}% (${counts.low})</span>
-          </div>
-          <div class="w-full bg-slate-200 rounded-full h-3.5 overflow-hidden">
-            <div class="bg-purple-600 h-3.5 rounded-full" style="width: ${pctLow}%"></div>
-          </div>
-        </div>` : ''}
-      `;
-
-      // Meal Timing Breakdown
-      const contextGroups = {};
-      healthLogs.forEach(entry => {
-        if (entry.bg === null || isNaN(entry.bg)) return;
-        const ctx = entry.context || 'general';
-        if (!contextGroups[ctx]) contextGroups[ctx] = [];
-        contextGroups[ctx].push(entry.bg);
-      });
-
-      breakdownEl.innerHTML = Object.keys(CONTEXT_LABELS).map(key => {
-        const arr = contextGroups[key] || [];
-        const label = CONTEXT_LABELS[key];
-        if (arr.length === 0) {
-          return `
-            <div class="flex items-center justify-between p-3 rounded-xl bg-white border border-slate-200 text-slate-400 text-sm font-medium">
-              <span>${label}</span>
-              <span>No data</span>
-            </div>
-          `;
-        }
-        const avg = Math.round(arr.reduce((a, b) => a + b, 0) / arr.length);
-        return `
-          <div class="flex items-center justify-between p-3 rounded-xl bg-white border border-slate-200 text-sm">
-            <span class="font-extrabold text-slate-800">${label} (${arr.length})</span>
-            <span class="font-black text-lg text-[#0F4C81]">${avg} mg/dL</span>
-          </div>
-        `;
-      }).join('');
-    }
-
-    /* ------------------------------------------------------------------- */
-    /* TAB 5: A1C <-> eAG CONVERTER & PRESETS                              */
-    /* ------------------------------------------------------------------- */
-    function setA1CPreset(a1cVal) {
-      const input = document.getElementById('conv-a1c');
-      if (input) {
-        input.value = a1cVal;
-        convertFromA1C(a1cVal);
-      }
-      const btns = document.querySelectorAll('.a1c-preset-btn');
-      btns.forEach(btn => {
-        if (parseFloat(btn.getAttribute('data-a1c')) === a1cVal) {
-          btn.classList.add('ring-4', 'ring-[#0F4C81]');
-        } else {
-          btn.classList.remove('ring-4', 'ring-[#0F4C81]');
-        }
-      });
-    }
-
-    function convertFromA1C(a1cVal) {
-      const a1c = parseFloat(a1cVal);
-      const mgdlEl = document.getElementById('conv-mgdl');
-      const cardEl = document.getElementById('conv-status-card');
-      const badgeEl = document.getElementById('conv-status-badge');
-      const headlineEl = document.getElementById('conv-status-headline');
-      const detailEl = document.getElementById('conv-status-detail');
-
-      if (isNaN(a1c) || a1c < 3.0 || a1c > 20.0) {
-        mgdlEl.value = '';
-        if (headlineEl) headlineEl.textContent = 'Please enter a valid A1C percentage between 3.5% and 18.0%.';
-        return;
-      }
-
-      // ADA ADAG Formula: eAG = (28.7 * A1C) - 46.7
-      const eAG = Math.round((28.7 * a1c) - 46.7);
-      const mmol = ((eAG + 46.7) / 18).toFixed(1);
-      mgdlEl.value = eAG;
-
-      if (a1c < 5.7) {
-        cardEl.className = 'mt-6 p-4 rounded-xl border-2 bg-emerald-50 border-emerald-400 text-emerald-950';
-        badgeEl.className = 'inline-block bg-emerald-800 text-white text-xs font-black uppercase px-2.5 py-0.5 rounded';
-        badgeEl.textContent = '2026 ADA: Normal Reference Range (< 5.7%)';
-        headlineEl.textContent = `An A1C of ${a1c.toFixed(1)}% equals an estimated average blood sugar of ${eAG} mg/dL (${mmol} mmol/L).`;
-        detailEl.textContent = 'This sits within the standard healthy reference window. Maintaining regular physical activity, balanced protein and fiber, and good sleep helps sustain metabolic health.';
-      } else if (a1c <= 6.4) {
-        cardEl.className = 'mt-6 p-4 rounded-xl border-2 bg-amber-50 border-amber-400 text-amber-950';
-        badgeEl.className = 'inline-block bg-amber-800 text-white text-xs font-black uppercase px-2.5 py-0.5 rounded';
-        badgeEl.textContent = `2026 ADA: Prediabetes Range (5.7% – 6.4%)`;
-        headlineEl.textContent = `An A1C of ${a1c.toFixed(1)}% equals an estimated average blood sugar of ${eAG} mg/dL (${mmol} mmol/L).`;
-        detailEl.textContent = 'This falls within the ADA prediabetes reference range (5.7%–6.4%). Studies suggest that modest weight loss (5–7%) and regular post-meal walking may help support healthier blood sugar levels.';
+      // Range Distribution Bars
+      const bgLogs = healthLogs.filter(l => l.bg !== null && !isNaN(l.bg));
+      if (bgLogs.length === 0) {
+        rangeBarsEl.innerHTML = `<p class="text-sm font-semibold text-slate-500">Log glucose readings on Tab 1 to see target range percentages.</p>`;
       } else {
-        cardEl.className = 'mt-6 p-4 rounded-xl border-2 bg-red-50 border-red-400 text-red-950';
-        badgeEl.className = 'inline-block bg-red-800 text-white text-xs font-black uppercase px-2.5 py-0.5 rounded';
-        badgeEl.textContent = '2026 ADA: Diabetes Threshold Window (≥ 6.5%)';
-        headlineEl.textContent = `An A1C of ${a1c.toFixed(1)}% equals an estimated average blood sugar of ${eAG} mg/dL (${mmol} mmol/L).`;
-        detailEl.textContent = 'An A1C of 6.5% or higher on two separate laboratory blood tests meets the criteria for diabetes diagnosis. Schedule a comprehensive lab panel with your doctor to build an individualized care plan.';
+        let normalCnt = 0, elevatedCnt = 0, highCnt = 0, lowCnt = 0;
+        bgLogs.forEach(l => {
+          const ev = evaluateGlucose(l.bg, l.context);
+          if (!ev) return;
+          if (ev.level === 'normal') normalCnt++;
+          else if (ev.level === 'elevated') elevatedCnt++;
+          else if (ev.level === 'high') highCnt++;
+          else if (ev.level === 'low') lowCnt++;
+        });
+
+        const total = bgLogs.length;
+        const pct = (n) => Math.round((n / total) * 100);
+
+        const bars = [
+          { label: 'In Normal Target Zone', count: normalCnt, pct: pct(normalCnt), barColor: 'bg-emerald-600', textColor: 'text-emerald-900' },
+          { label: 'Elevated / Prediabetes Zone', count: elevatedCnt, pct: pct(elevatedCnt), barColor: 'bg-amber-500', textColor: 'text-amber-900' },
+          { label: 'High Spike Zone', count: highCnt, pct: pct(highCnt), barColor: 'bg-red-600', textColor: 'text-red-900' },
+          { label: 'Low (< 70 mg/dL)', count: lowCnt, pct: pct(lowCnt), barColor: 'bg-purple-600', textColor: 'text-purple-900' }
+        ];
+
+        rangeBarsEl.innerHTML = bars.map(b => `
+          <div>
+            <div class="flex justify-between text-sm font-extrabold ${b.textColor} mb-1">
+              <span>${b.label}</span>
+              <span>${b.count} (${b.pct}%)</span>
+            </div>
+            <div class="w-full h-4 bg-slate-200 rounded-full overflow-hidden">
+              <div class="${b.barColor} h-full rounded-full transition-all duration-300" style="width: ${b.pct}%"></div>
+            </div>
+          </div>
+        `).join('');
       }
-    }
 
-    /* ------------------------------------------------------------------- */
-    /* TAB 6: WEIGHT IMPACT CALCULATOR                                     */
-    /* ------------------------------------------------------------------- */
-    function calcWeightImpact() {
-      const cur = parseFloat(document.getElementById('wt-current').value) || 0;
-      const goal = parseFloat(document.getElementById('wt-goal').value) || 0;
-      const a1c = parseFloat(document.getElementById('wt-a1c').value) || 0;
-      const box = document.getElementById('wt-results-box');
-      if (!box) return;
-
-      if (cur <= 0 || goal <= 0 || cur <= goal) {
-        box.innerHTML = `
-          <div class="col-span-3 p-5 rounded-xl bg-slate-100 border border-slate-300 text-slate-700 font-semibold text-center">
-            Enter a current weight higher than your goal weight to view DPP projection metrics.
+      // Context Breakdown
+      const contexts = Object.keys(CONTEXT_LABELS);
+      const contextCards = contexts.map(ctxKey => {
+        const items = bgLogs.filter(l => l.context === ctxKey);
+        if (items.length === 0) return '';
+        const cAvg = Math.round(items.reduce((a, b) => a + b.bg, 0) / items.length);
+        const cMin = Math.min(...items.map(i => i.bg));
+        const cMax = Math.max(...items.map(i => i.bg));
+        const ev = evaluateGlucose(cAvg, ctxKey);
+        return `
+          <div class="p-3.5 rounded-xl bg-white border border-slate-300 flex items-center justify-between gap-3">
+            <div>
+              <div class="font-extrabold text-slate-900 text-sm">${CONTEXT_LABELS[ctxKey]}</div>
+              <div class="text-xs font-semibold text-slate-600">${items.length} ${items.length === 1 ? 'check' : 'checks'} • Range: ${cMin}–${cMax} mg/dL</div>
+            </div>
+            <div class="text-right">
+              <div class="text-lg font-black text-[#0F4C81]">${cAvg} mg/dL</div>
+              ${ev ? `<span class="inline-block text-[10px] font-black uppercase px-2 py-0.5 rounded ${ev.pillClass}">${ev.level}</span>` : ''}
+            </div>
           </div>
         `;
-        return;
-      }
+      }).filter(Boolean).join('');
 
-      const lbsLost = cur - goal;
-      const pctLost = ((lbsLost / cur) * 100).toFixed(1);
-      
-      // Estimated A1C drop projection: ~0.1% to 0.5% reduction per 5-10% weight loss
-      let estA1cDrop = (pctLost * 0.05).toFixed(2);
-      if (estA1cDrop > 1.5) estA1cDrop = 1.50;
-      const projectedA1C = (a1c - estA1cDrop).toFixed(1);
-
-      box.innerHTML = `
-        <div class="p-4 rounded-2xl bg-sky-50 border-2 border-[#0F4C81]">
-          <span class="text-xs font-extrabold uppercase text-[#0F4C81]">Target Weight Loss</span>
-          <div class="text-3xl font-black text-[#0F4C81] mt-1">${lbsLost.toFixed(1)} lbs (${pctLost}%)</div>
-          <p class="text-xs font-semibold text-slate-700 mt-1">${cur} lbs &rarr; ${goal} lbs</p>
-        </div>
-        <div class="p-4 rounded-2xl bg-emerald-50 border-2 border-emerald-300">
-          <span class="text-xs font-extrabold uppercase text-emerald-900">NIH DPP Risk Reduction Benchmark</span>
-          <div class="text-3xl font-black text-emerald-800 mt-1">Up to ~58% Lower Risk</div>
-          <p class="text-xs font-semibold text-emerald-900 mt-1">Based on 5–7% sustained loss in landmark DPP clinical trial</p>
-        </div>
-        <div class="p-4 rounded-2xl bg-amber-50 border-2 border-amber-300">
-          <span class="text-xs font-extrabold uppercase text-amber-950">Projected Educational A1C Target</span>
-          <div class="text-3xl font-black text-amber-900 mt-1">${projectedA1C}%</div>
-          <p class="text-xs font-semibold text-amber-950 mt-1">Estimated ~${estA1cDrop}% drop from baseline ${a1c}%</p>
-        </div>
-      `;
+      contextEl.innerHTML = contextCards || `<p class="text-sm font-semibold text-slate-500">No meal-timing glucose data logged yet.</p>`;
     }
 
-    /* ------------------------------------------------------------------- */
-    /* TAB 7: RENDER TOP 20 TIPS                                           */
-    /* ------------------------------------------------------------------- */
-    function renderTop20Tips() {
-      const grid = document.getElementById('top-20-tips-grid');
-      if (!grid) return;
-      grid.innerHTML = TOP_20_TIPS.map(tip => `
-        <div class="p-4 rounded-2xl bg-slate-50 border-2 border-slate-200 hover:border-[#0F4C81] transition space-y-1">
-          <h3 class="text-lg font-extrabold text-[#0F4C81]">${tip.title}</h3>
-          <p class="text-sm text-slate-700 font-medium leading-relaxed">${tip.desc}</p>
-        </div>
-      `).join('');
-    }
-
-    /* ------------------------------------------------------------------- */
-    /* TAB 8: PRINTABLE DOCTOR REPORT                                      */
-    /* ------------------------------------------------------------------- */
-    function updateReportDate() {
-      const el = document.getElementById('report-generated-date');
-      if (el) {
-        const d = new Date();
-        el.textContent = `Generated on ${d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })} at ${d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true })}`;
-      }
-    }
-
-    function renderTab8Report(avgBg, estA1C, avgSys, avgDia) {
+    function renderTab8Report(avgBg, estA1C) {
       const summaryEl = document.getElementById('doctor-report-summary');
       const tbodyEl = document.getElementById('doctor-report-tbody');
       if (!summaryEl || !tbodyEl) return;
 
       summaryEl.innerHTML = `
-        <div class="p-3 bg-slate-50 border border-slate-300 rounded-xl">
-          <span class="text-xs font-extrabold uppercase text-slate-600 block">Total Readings</span>
-          <span class="text-xl font-black text-slate-900">${healthLogs.length} Entries</span>
+        <div class="p-4 rounded-xl border border-slate-300 bg-slate-50">
+          <div class="text-xs font-bold uppercase text-slate-600">Total Logged Checks</div>
+          <div class="text-2xl font-black text-slate-900 mt-1">${healthLogs.length}</div>
         </div>
-        <div class="p-3 bg-sky-50 border border-sky-300 rounded-xl">
-          <span class="text-xs font-extrabold uppercase text-[#0F4C81] block">Overall Avg Glucose</span>
-          <span class="text-xl font-black text-[#0F4C81]">${avgBg ? avgBg + ' mg/dL' : 'N/A'}</span>
+        <div class="p-4 rounded-xl border border-slate-300 bg-slate-50">
+          <div class="text-xs font-bold uppercase text-slate-600">Average Blood Sugar</div>
+          <div class="text-2xl font-black text-slate-900 mt-1">${avgBg ? avgBg + ' mg/dL' : '--'}</div>
         </div>
-        <div class="p-3 bg-emerald-50 border border-emerald-300 rounded-xl">
-          <span class="text-xs font-extrabold uppercase text-emerald-900 block">Rolling Est. A1C</span>
-          <span class="text-xl font-black text-emerald-800">${estA1C ? estA1C + '%' : 'N/A'}</span>
-        </div>
-        <div class="p-3 bg-slate-50 border border-slate-300 rounded-xl">
-          <span class="text-xs font-extrabold uppercase text-slate-600 block">Average BP</span>
-          <span class="text-xl font-black text-slate-900">${(avgSys && avgDia) ? `${avgSys}/${avgDia}` : 'N/A'}</span>
+        <div class="p-4 rounded-xl border border-slate-300 bg-sky-50">
+          <div class="text-xs font-bold uppercase text-[#0F4C81]">Estimated A1C (ADAG)</div>
+          <div class="text-2xl font-black text-[#0F4C81] mt-1">${estA1C ? estA1C + '%' : '--'}</div>
         </div>
       `;
 
       if (healthLogs.length === 0) {
-        tbodyEl.innerHTML = `
-          <tr>
-            <td colspan="6" class="p-6 text-center text-slate-500 font-medium">No logs recorded yet on this device.</td>
-          </tr>
-        `;
+        tbodyEl.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-slate-500 font-semibold">No readings logged yet.</td></tr>`;
         return;
       }
 
       tbodyEl.innerHTML = healthLogs.map(entry => {
         const gEval = evaluateGlucose(entry.bg, entry.context);
-        const bpEval = evaluateBP(entry.sys, entry.dia);
         return `
-          <tr class="border-b border-slate-200">
-            <td class="p-3 font-semibold text-slate-800 whitespace-nowrap">${formatDisplayDateTime(entry.datetime)}</td>
-            <td class="p-3 font-bold text-[#0F4C81] whitespace-nowrap">${CONTEXT_LABELS[entry.context] || entry.context}</td>
-            <td class="p-3 font-black text-slate-900">${entry.bg !== null ? entry.bg + ' mg/dL' : '--'}</td>
-            <td class="p-3 whitespace-nowrap">${gEval ? `<span class="text-xs font-extrabold uppercase px-2 py-0.5 rounded ${gEval.pillClass}">${gEval.badge}</span>` : '--'}</td>
-            <td class="p-3 whitespace-nowrap font-bold text-slate-800">${(entry.sys && entry.dia) ? `${entry.sys}/${entry.dia} mmHg` : '--'}</td>
-            <td class="p-3 text-slate-700 font-medium">${entry.note ? escapeHTML(entry.note) : '--'}</td>
+          <tr>
+            <td class="p-3 font-semibold whitespace-nowrap">${formatDisplayDateTime(entry.datetime)}</td>
+            <td class="p-3">${CONTEXT_LABELS[entry.context] || entry.context}</td>
+            <td class="p-3 font-extrabold">${entry.bg !== null ? entry.bg + ' mg/dL' : '--'}</td>
+            <td class="p-3 font-bold">${gEval ? gEval.badge : '--'}</td>
+            <td class="p-3">${escapeHTML(entry.note || '')}</td>
           </tr>
         `;
       }).join('');
+    }
+
+    function updateReportDate() {
+      const el = document.getElementById('report-generated-date');
+      if (el) {
+        el.textContent = 'Generated on ' + new Date().toLocaleDateString('en-US', {
+          weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+        });
+      }
+    }
+
+    /* ------------------------------------------------------------------- */
+    /* TAB 5: TWO-WAY A1C <-> eAG CONVERTER & DYNAMIC BENCHMARK HIGHLIGHT  */
+    /* ------------------------------------------------------------------- */
+    function setA1CPreset(val) {
+      const a1cInput = document.getElementById('conv-a1c');
+      if (a1cInput) {
+        a1cInput.value = Number(val).toFixed(1);
+        convertFromA1C(val);
+      }
+    }
+
+    function highlightActivePresetButton(currentA1C) {
+      const buttons = document.querySelectorAll('.a1c-preset-btn');
+      buttons.forEach(btn => {
+        const btnVal = parseFloat(btn.getAttribute('data-a1c'));
+        if (!isNaN(currentA1C) && Math.abs(btnVal - currentA1C) < 0.05) {
+          btn.classList.add('ring-4', 'ring-[#0F4C81]', 'border-[#0F4C81]', 'scale-[1.03]');
+        } else {
+          btn.classList.remove('ring-4', 'ring-[#0F4C81]', 'border-[#0F4C81]', 'scale-[1.03]');
+        }
+      });
+    }
+
+    function convertFromA1C(val) {
+      const a1c = parseFloat(val);
+      highlightActivePresetButton(a1c);
+      if (isNaN(a1c) || a1c <= 0) return;
+
+      const mgdl = Math.round((28.7 * a1c) - 46.7);
+      const mmol = (mgdl / 18.0182).toFixed(1);
+
+      document.getElementById('conv-mgdl').value = mgdl;
+      const mmolEl = document.getElementById('conv-mmol');
+      if (mmolEl) mmolEl.value = mmol;
+      updateConverterStatusCard(a1c, mgdl, mmol);
+    }
+
+    function convertFromMgdl(val) {
+      const mgdl = parseFloat(val);
+      if (isNaN(mgdl) || mgdl <= 0) return;
+
+      const a1c = ((mgdl + 46.7) / 28.7).toFixed(1);
+      const mmol = (mgdl / 18.0182).toFixed(1);
+
+      document.getElementById('conv-a1c').value = a1c;
+      const mmolEl = document.getElementById('conv-mmol');
+      if (mmolEl) mmolEl.value = mmol;
+      highlightActivePresetButton(parseFloat(a1c));
+      updateConverterStatusCard(parseFloat(a1c), Math.round(mgdl), mmol);
+    }
+
+    function convertFromMmol(val) {
+      const mmol = parseFloat(val);
+      if (isNaN(mmol) || mmol <= 0) return;
+
+      const mgdl = Math.round(mmol * 18.0182);
+      const a1c = ((mgdl + 46.7) / 28.7).toFixed(1);
+
+      document.getElementById('conv-mgdl').value = mgdl;
+      document.getElementById('conv-a1c').value = a1c;
+      highlightActivePresetButton(parseFloat(a1c));
+      updateConverterStatusCard(parseFloat(a1c), mgdl, mmol.toFixed(1));
+    }
+
+    function updateConverterStatusCard(a1c, mgdl, mmol) {
+      const card = document.getElementById('conv-status-card');
+      const badge = document.getElementById('conv-status-badge');
+      const headline = document.getElementById('conv-status-headline');
+      const detail = document.getElementById('conv-status-detail');
+
+      headline.textContent = `An A1C of ${a1c.toFixed(1)}% equals an estimated average blood sugar of ${mgdl} mg/dL (${mmol} mmol/L).`;
+
+      if (a1c < 5.7) {
+        card.className = 'mt-6 p-4 rounded-xl border-2 bg-emerald-50 border-emerald-400 text-emerald-950';
+        badge.className = 'inline-block bg-emerald-700 text-white text-xs font-black uppercase px-2.5 py-0.5 rounded';
+        badge.textContent = '2026 ADA: Normal Range (< 5.7%)';
+        detail.textContent = 'This falls within the standard ADA normal reference range (< 5.7%). Keep up consistent post-meal movement and balanced meals, and confirm with clinical lab testing.';
+      } else if (a1c <= 6.4) {
+        card.className = 'mt-6 p-4 rounded-xl border-2 bg-amber-50 border-amber-400 text-amber-950';
+        badge.className = 'inline-block bg-amber-800 text-white text-xs font-black uppercase px-2.5 py-0.5 rounded';
+        badge.textContent = '2026 ADA: Prediabetes Range (5.7% – 6.4%)';
+        detail.textContent = 'This falls within the ADA prediabetes reference range (5.7%–6.4%). Studies suggest that modest weight loss (5–7%) and regular post-meal walking may help support healthier blood sugar levels.';
+      } else {
+        card.className = 'mt-6 p-4 rounded-xl border-2 bg-red-50 border-red-400 text-red-950';
+        badge.className = 'inline-block bg-red-700 text-white text-xs font-black uppercase px-2.5 py-0.5 rounded';
+        badge.textContent = '2026 ADA: Diabetes Range (≥ 6.5%)';
+        detail.textContent = 'An A1C of 6.5% or higher on two separate clinical laboratory tests indicates diabetes. Consult your physician for medical diagnosis and a comprehensive treatment plan.';
+      }
+    }
+
+    function calcWeightImpact() {
+      const curWt = parseFloat(document.getElementById('wt-current')?.value);
+      const goalWt = parseFloat(document.getElementById('wt-goal')?.value);
+      const curA1c = parseFloat(document.getElementById('wt-a1c')?.value);
+      const box = document.getElementById('wt-results-box');
+      if (!box) return;
+
+      if (isNaN(curWt) || isNaN(goalWt) || isNaN(curA1c) || curWt <= 0) {
+        box.innerHTML = `<div class="col-span-3 text-slate-500 font-bold p-4">Please enter valid weight and A1C numbers above.</div>`;
+        return;
+      }
+
+      const diffLbs = curWt - goalWt;
+      const pctLoss = ((diffLbs / curWt) * 100).toFixed(1);
+      const estA1cDrop = ((diffLbs / curWt) * 0.8).toFixed(1);
+      const projA1c = Math.max(4.0, (curA1c - estA1cDrop)).toFixed(1);
+
+      box.innerHTML = `
+        <div class="p-4 rounded-2xl bg-slate-50 border-2 border-slate-200">
+          <div class="text-xs font-extrabold uppercase text-slate-600">Weight Loss Target</div>
+          <div class="text-2xl font-black text-slate-900 mt-1">${diffLbs > 0 ? diffLbs + ' lbs (' + pctLoss + '%)' : '0 lbs'}</div>
+          <p class="text-xs font-semibold text-slate-600 mt-1">DPP benchmark target: 5%–7% loss</p>
+        </div>
+        <div class="p-4 rounded-2xl bg-emerald-50 border-2 border-emerald-300">
+          <div class="text-xs font-extrabold uppercase text-emerald-900">Est. Lifestyle A1C Reduction</div>
+          <div class="text-2xl font-black text-emerald-800 mt-1">~${estA1cDrop > 0 ? estA1cDrop : '0.0'}% Drop</div>
+          <p class="text-xs font-semibold text-emerald-900 mt-1">Based on NIH DPP lifestyle intervention averages</p>
+        </div>
+        <div class="p-4 rounded-2xl bg-sky-50 border-2 border-[#0F4C81]">
+          <div class="text-xs font-extrabold uppercase text-[#0F4C81]">Projected Target A1C</div>
+          <div class="text-2xl font-black text-[#0F4C81] mt-1">${projA1c}%</div>
+          <p class="text-xs font-semibold text-slate-700 mt-1">Estimated potential baseline after sustained weight loss</p>
+        </div>
+      `;
+    }
+
+    function openLegalModal() {
+      const m = document.getElementById('legal-modal');
+      if (m) {
+        m.classList.remove('hidden');
+        m.classList.add('flex');
+      }
+    }
+
+    function closeLegalModal() {
+      const m = document.getElementById('legal-modal');
+      if (m) {
+        m.classList.add('hidden');
+        m.classList.remove('flex');
+      }
+    }
+
+    function escapeHTML(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
     }
   </script>
 </body>
