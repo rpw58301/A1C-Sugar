@@ -1014,7 +1014,10 @@
             <strong>3. 100% Client-Side Storage:</strong> Your readings are saved exclusively inside your web browser's <code>localStorage</code>. Clearing browser data or switching devices removes saved entries unless printed or exported to PDF.
           </p>
           <p>
-            <strong>4. No Doctor-Patient Relationship &amp; Limitation of Liability:</strong> Using A1CSugar.com does not create a doctor-patient relationship. This site and its calculators are provided "as is" without warranties of any kind. By using this site, you agree that the creator is not liable for any health decisions, actions, or outcomes resulting from your use of these educational tools.
+            <strong>4. No Doctor-Patient Relationship &amp; Limitation of Liability:</strong> Using A1CSugar.com does not create a doctor-patient relationship. This site is intended for adults 18 and older and is provided "as is" without warranties of any kind. By using this site, you agree that the creator is not liable for any health decisions, actions, or outcomes resulting from your use of these educational tools.
+          </p>
+          <p>
+            <strong>5. Independent Tool (No Affiliation):</strong> A1CSugar.com is an independent educational tool and is not affiliated with, endorsed by, or sponsored by the ADA, AHA, or NIH.
           </p>
         </div>
       </div>
@@ -1045,16 +1048,16 @@
 
     const TOP_20_TIPS = [
       { title: '1. Take a 10-Minute Walk After Meals', desc: 'Contracting leg muscles right after eating pulls glucose directly out of your bloodstream without needing extra insulin.' },
-      { title: '2. Eat Veggies & Protein First, Carbs Last', desc: 'Eating fiber and protein before starches slows stomach emptying and flattens the 1-hour glucose peak by up to 30–40%.' },
+      { title: '2. Eat Veggies & Protein First, Carbs Last', desc: 'Eating fiber and protein before starches slows stomach emptying and may help flatten the 1-hour post-meal glucose peak.' },
       { title: '3. Never Drink Naked Sugar', desc: 'Regular soda, sweet tea, and fruit juice hit the bloodstream in minutes. Swap for water, unsweetened iced tea, or sparkling water.' },
       { title: '4. Pair Every Carb With Protein or Healthy Fat', desc: 'If you eat an apple or crackers, add peanut butter, cheese, or almonds to blunt the glycemic spike.' },
       { title: '5. Test at 1-Hour AND 2-Hours Post-Meal', desc: 'Many people with prediabetes spike sharply at 60 minutes even if they look normal by 120 minutes. Catching the 1-hr peak reveals hidden triggers.' },
-      { title: '6. Aim for 5–7% Gradual Weight Loss', desc: 'Losing 10–14 lbs at 200 lbs clears liver and pancreas fat, restoring natural insulin sensitivity.' },
+      { title: '6. Aim for 5–7% Gradual Weight Loss', desc: 'Modest weight loss (such as 10–14 lbs at 200 lbs) can support improved insulin sensitivity over time.' },
       { title: '7. Prioritize 7–8 Hours of Quality Sleep', desc: 'Just one night of 4–5 hours of sleep induces temporary insulin resistance the next morning.' },
       { title: '8. Watch Out for "Healthy" Breakfast Traps', desc: 'Instant oatmeal, bagels, and orange juice trigger massive morning spikes when cortisol is already high. Choose eggs, Greek yogurt, or cottage cheese.' },
       { title: '9. Add 2 Sessions of Resistance Training Weekly', desc: 'Skeletal muscle is your largest glucose storage tank. More muscle mass means better blood sugar disposal 24/7.' },
       { title: '10. Stay Hydrated All Day', desc: 'Mild dehydration concentrates blood glucose and makes your kidneys work harder to flush excess sugar.' },
-      { title: '11. Try 1 Tablespoon of Vinegar Before Starchy Meals', desc: 'Acetic acid in apple cider or wine vinegar diluted in water before a meal can modestly slow starch digestion.' },
+      { title: '11. Ask About Diluted Vinegar Before Starchy Meals', desc: 'Some small studies suggest diluted vinegar before meals may modestly slow starch digestion; check with your doctor first, especially if you have reflux or take medications.' },
       { title: '12. Track Blood Pressure Alongside Blood Sugar', desc: 'High glucose and high blood pressure amplify each other’s impact on kidneys and arteries. Keep both logged together.' },
       { title: '13. Cook, Cool, and Reheat Starches', desc: 'Cooling cooked potatoes, rice, or pasta overnight increases resistant starch, lowering their glycemic impact.' },
       { title: '14. Cut Late-Night Snacking 3 Hours Before Bed', desc: 'Insulin sensitivity drops at night. Late snacks keep overnight fasting glucose elevated.' },
@@ -1081,12 +1084,14 @@
 
       // Ensure pressing Enter anywhere inside the Quick Entry Form submits cleanly
       const form = document.getElementById('home-quick-entry-form');
-      form.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' && e.target.tagName !== 'BUTTON') {
-          e.preventDefault();
-          handleQuickEntrySubmit(e);
-        }
-      });
+      if (form) {
+        form.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' && e.target.tagName !== 'BUTTON') {
+            e.preventDefault();
+            handleQuickEntrySubmit(e);
+          }
+        });
+      }
     });
 
     function setDefaultDateTimeInput() {
@@ -1147,6 +1152,35 @@
         saveToStorage();
         renderAllViews();
       }
+    }
+
+    /* ------------------------------------------------------------------- */
+    /* MODAL HANDLERS                                                      */
+    /* ------------------------------------------------------------------- */
+    function openLegalModal() {
+      const modal = document.getElementById('legal-modal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+    }
+
+    function closeLegalModal() {
+      const modal = document.getElementById('legal-modal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+    }
+
+    function escapeHTML(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
     }
 
     /* ------------------------------------------------------------------- */
@@ -1259,7 +1293,7 @@
           badge: 'PREDIABETES RANGE (140–199 mg/dL)',
           bgClass: 'bg-amber-50 border-amber-400 text-amber-950',
           pillClass: 'bg-amber-600 text-white',
-          advice: 'In the 140–199 mg/dL impaired glucose tolerance range. Post-meal movement helps bring this down faster.'
+          advice: 'In the ADA 2-hour prediabetes reference range (140–199 mg/dL). Post-meal movement helps bring this down faster.'
         };
       } else {
         return {
@@ -1594,230 +1628,156 @@
       overviewEl.innerHTML = `
         <div class="p-4 rounded-2xl bg-sky-50 border-2 border-[#0F4C81]">
           <div class="text-xs font-extrabold uppercase text-[#0F4C81]">Average Glucose / Est. A1C</div>
-          <div class="text-2xl font-black text-slate-900 mt-1">${avgBg ? avgBg + ' mg/dL' : '--'}</div>
-          <div class="text-xs font-bold text-[#0F4C81] mt-1">Est. A1C: ${estA1C ? estA1C + '%' : '--'} (${bgReadings.length} checks)</div>
+          <div class="text-2xl font-black text-slate-900 mt-1">${avgBg ? `${avgBg} mg/dL` : '-- mg/dL'}</div>
+          <p class="text-xs font-bold text-slate-600 mt-0.5">Estimated A1C: <span class="text-[#0F4C81] font-black">${estA1C ? estA1C + '%' : '--%'}</span></p>
         </div>
         <div class="p-4 rounded-2xl bg-slate-50 border-2 border-slate-200">
-          <div class="text-xs font-extrabold uppercase text-slate-600">Glucose Min / Max Span</div>
-          <div class="text-2xl font-black text-slate-900 mt-1">${minBg !== null ? minBg + ' – ' + maxBg : '--'}</div>
-          <div class="text-xs font-semibold text-slate-600 mt-1">Lowest to highest mg/dL logged</div>
+          <div class="text-xs font-extrabold uppercase text-slate-600">Glucose Range (Min–Max)</div>
+          <div class="text-2xl font-black text-slate-900 mt-1">${minBg && maxBg ? `${minBg} – ${maxBg}` : '--'} <span class="text-sm font-bold">mg/dL</span></div>
+          <p class="text-xs font-semibold text-slate-600 mt-0.5">${bgReadings.length} total glucose checks</p>
         </div>
         <div class="p-4 rounded-2xl bg-slate-50 border-2 border-slate-200">
-          <div class="text-xs font-extrabold uppercase text-slate-600">Average Blood Pressure</div>
-          <div class="text-2xl font-black text-slate-900 mt-1">${avgSys && avgDia ? avgSys + '/' + avgDia : '--'}</div>
-          <div class="text-xs font-semibold text-slate-600 mt-1">Across ${bpReadings.length} BP checks</div>
+          <div class="text-xs font-extrabold uppercase text-slate-600">Avg Blood Pressure</div>
+          <div class="text-2xl font-black text-slate-900 mt-1">${avgSys && avgDia ? `${avgSys}/${avgDia}` : '-- / --'} <span class="text-sm font-bold">mmHg</span></div>
+          <p class="text-xs font-semibold text-slate-600 mt-0.5">Range: ${minBpText} to ${maxBpText}</p>
         </div>
-        <div class="p-4 rounded-2xl bg-slate-50 border-2 border-slate-200">
-          <div class="text-xs font-extrabold uppercase text-slate-600">BP Min / Max Span</div>
-          <div class="text-2xl font-black text-slate-900 mt-1">${bpReadings.length > 0 ? minBpText + ' to ' + maxBpText : '--'}</div>
-          <div class="text-xs font-semibold text-slate-600 mt-1">Sys/Dia mmHg range</div>
+        <div class="p-4 rounded-2xl bg-emerald-50 border-2 border-emerald-300">
+          <div class="text-xs font-extrabold uppercase text-emerald-900">Total Entries Stored</div>
+          <div class="text-2xl font-black text-emerald-950 mt-1">${healthLogs.length} Logs</div>
+          <p class="text-xs font-bold text-emerald-800 mt-0.5">Stored 100% locally on device</p>
         </div>
       `;
 
-      // Range Distribution Bars
-      const bgLogs = healthLogs.filter(l => l.bg !== null && !isNaN(l.bg));
-      if (bgLogs.length === 0) {
-        rangeBarsEl.innerHTML = `<p class="text-sm font-semibold text-slate-500">Log glucose readings on Tab 1 to see target range percentages.</p>`;
-      } else {
-        let normalCnt = 0, elevatedCnt = 0, highCnt = 0, lowCnt = 0;
-        bgLogs.forEach(l => {
-          const ev = evaluateGlucose(l.bg, l.context);
-          if (!ev) return;
-          if (ev.level === 'normal') normalCnt++;
-          else if (ev.level === 'elevated') elevatedCnt++;
-          else if (ev.level === 'high') highCnt++;
-          else if (ev.level === 'low') lowCnt++;
-        });
+      // Range distribution calculations
+      let normalCount = 0;
+      let elevatedCount = 0;
+      let highCount = 0;
+      let lowCount = 0;
 
-        const total = bgLogs.length;
-        const pct = (n) => Math.round((n / total) * 100);
+      healthLogs.forEach(item => {
+        if (item.bg !== null && !isNaN(item.bg)) {
+          const evalRes = evaluateGlucose(item.bg, item.context);
+          if (evalRes) {
+            if (evalRes.level === 'normal') normalCount++;
+            else if (evalRes.level === 'elevated') elevatedCount++;
+            else if (evalRes.level === 'high') highCount++;
+            else if (evalRes.level === 'low') lowCount++;
+          }
+        }
+      });
 
-        const bars = [
-          { label: 'In Normal Target Zone', count: normalCnt, pct: pct(normalCnt), barColor: 'bg-emerald-600', textColor: 'text-emerald-900' },
-          { label: 'Elevated / Prediabetes Zone', count: elevatedCnt, pct: pct(elevatedCnt), barColor: 'bg-amber-500', textColor: 'text-amber-900' },
-          { label: 'High Spike Zone', count: highCnt, pct: pct(highCnt), barColor: 'bg-red-600', textColor: 'text-red-900' },
-          { label: 'Low (< 70 mg/dL)', count: lowCnt, pct: pct(lowCnt), barColor: 'bg-purple-600', textColor: 'text-purple-900' }
-        ];
+      const totalBgLogs = bgReadings.length || 1;
+      const normalPct = Math.round((normalCount / totalBgLogs) * 100);
+      const elevatedPct = Math.round((elevatedCount / totalBgLogs) * 100);
+      const highPct = Math.round((highCount / totalBgLogs) * 100);
+      const lowPct = Math.round((lowCount / totalBgLogs) * 100);
 
-        rangeBarsEl.innerHTML = bars.map(b => `
-          <div>
-            <div class="flex justify-between text-sm font-extrabold ${b.textColor} mb-1">
-              <span>${b.label}</span>
-              <span>${b.count} (${b.pct}%)</span>
-            </div>
-            <div class="w-full h-4 bg-slate-200 rounded-full overflow-hidden">
-              <div class="${b.barColor} h-full rounded-full transition-all duration-300" style="width: ${b.pct}%"></div>
-            </div>
+      rangeBarsEl.innerHTML = `
+        <div>
+          <div class="flex justify-between text-sm font-bold mb-1">
+            <span class="text-emerald-900">Normal Target Zone</span>
+            <span>${normalCount} (${normalPct}%)</span>
           </div>
-        `).join('');
-      }
+          <div class="w-full bg-slate-200 rounded-full h-4 overflow-hidden">
+            <div class="bg-emerald-600 h-4 rounded-full transition-all duration-300" style="width: ${bgReadings.length ? normalPct : 0}%"></div>
+          </div>
+        </div>
+        <div>
+          <div class="flex justify-between text-sm font-bold mb-1">
+            <span class="text-amber-900">Prediabetes / Mild Spike Range</span>
+            <span>${elevatedCount} (${elevatedPct}%)</span>
+          </div>
+          <div class="w-full bg-slate-200 rounded-full h-4 overflow-hidden">
+            <div class="bg-amber-500 h-4 rounded-full transition-all duration-300" style="width: ${bgReadings.length ? elevatedPct : 0}%"></div>
+          </div>
+        </div>
+        <div>
+          <div class="flex justify-between text-sm font-bold mb-1">
+            <span class="text-red-900">High Range</span>
+            <span>${highCount} (${highPct}%)</span>
+          </div>
+          <div class="w-full bg-slate-200 rounded-full h-4 overflow-hidden">
+            <div class="bg-red-600 h-4 rounded-full transition-all duration-300" style="width: ${bgReadings.length ? highPct : 0}%"></div>
+          </div>
+        </div>
+        ${lowCount > 0 ? `
+        <div>
+          <div class="flex justify-between text-sm font-bold mb-1">
+            <span class="text-purple-900">Below Reference Range (&lt;70 mg/dL)</span>
+            <span>${lowCount} (${lowPct}%)</span>
+          </div>
+          <div class="w-full bg-slate-200 rounded-full h-4 overflow-hidden">
+            <div class="bg-purple-600 h-4 rounded-full transition-all duration-300" style="width: ${lowPct}%"></div>
+          </div>
+        </div>` : ''}
+      `;
 
-      // Context Breakdown
-      const contexts = Object.keys(CONTEXT_LABELS);
-      const contextCards = contexts.map(ctxKey => {
-        const items = bgLogs.filter(l => l.context === ctxKey);
-        if (items.length === 0) return '';
-        const cAvg = Math.round(items.reduce((a, b) => a + b.bg, 0) / items.length);
-        const cMin = Math.min(...items.map(i => i.bg));
-        const cMax = Math.max(...items.map(i => i.bg));
-        const ev = evaluateGlucose(cAvg, ctxKey);
+      // Meal context breakdown calculations
+      const contextKeys = ['fasting', 'premeal', 'post1hr', 'post2hr', 'post34hr', 'bedtime'];
+      contextEl.innerHTML = contextKeys.map(key => {
+        const matches = healthLogs.filter(l => l.context === key && l.bg !== null && !isNaN(l.bg));
+        if (matches.length === 0) return '';
+        const avg = Math.round(matches.reduce((acc, curr) => acc + curr.bg, 0) / matches.length);
         return `
-          <div class="p-3.5 rounded-xl bg-white border border-slate-300 flex items-center justify-between gap-3">
-            <div>
-              <div class="font-extrabold text-slate-900 text-sm">${CONTEXT_LABELS[ctxKey]}</div>
-              <div class="text-xs font-semibold text-slate-600">${items.length} ${items.length === 1 ? 'check' : 'checks'} • Range: ${cMin}–${cMax} mg/dL</div>
-            </div>
+          <div class="flex items-center justify-between p-3 rounded-xl bg-white border border-slate-200">
+            <div class="font-extrabold text-slate-800 text-sm">${CONTEXT_LABELS[key]}</div>
             <div class="text-right">
-              <div class="text-lg font-black text-[#0F4C81]">${cAvg} mg/dL</div>
-              ${ev ? `<span class="inline-block text-[10px] font-black uppercase px-2 py-0.5 rounded ${ev.pillClass}">${ev.level}</span>` : ''}
+              <span class="text-lg font-black text-[#0F4C81]">${avg} mg/dL</span>
+              <span class="text-xs font-semibold text-slate-500 block">${matches.length} ${matches.length === 1 ? 'check' : 'checks'}</span>
             </div>
           </div>
         `;
-      }).filter(Boolean).join('');
-
-      contextEl.innerHTML = contextCards || `<p class="text-sm font-semibold text-slate-500">No meal-timing glucose data logged yet.</p>`;
-    }
-
-    function renderTab8Report(avgBg, estA1C, avgSys, avgDia) {
-      const summaryEl = document.getElementById('doctor-report-summary');
-      const tbodyEl = document.getElementById('doctor-report-tbody');
-      if (!summaryEl || !tbodyEl) return;
-
-      summaryEl.innerHTML = `
-        <div class="p-4 rounded-xl border border-slate-300 bg-slate-50">
-          <div class="text-xs font-bold uppercase text-slate-600">Total Logged Checks</div>
-          <div class="text-2xl font-black text-slate-900 mt-1">${healthLogs.length}</div>
-        </div>
-        <div class="p-4 rounded-xl border border-slate-300 bg-slate-50">
-          <div class="text-xs font-bold uppercase text-slate-600">Average Blood Sugar</div>
-          <div class="text-2xl font-black text-slate-900 mt-1">${avgBg ? avgBg + ' mg/dL' : '--'}</div>
-        </div>
-        <div class="p-4 rounded-xl border border-slate-300 bg-sky-50">
-          <div class="text-xs font-bold uppercase text-[#0F4C81]">Estimated A1C (ADAG)</div>
-          <div class="text-2xl font-black text-[#0F4C81] mt-1">${estA1C ? estA1C + '%' : '--'}</div>
-        </div>
-        <div class="p-4 rounded-xl border border-slate-300 bg-slate-50">
-          <div class="text-xs font-bold uppercase text-slate-600">Average Blood Pressure</div>
-          <div class="text-2xl font-black text-slate-900 mt-1">${avgSys && avgDia ? avgSys + '/' + avgDia : '--'}</div>
-        </div>
-      `;
-
-      if (healthLogs.length === 0) {
-        tbodyEl.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-slate-500 font-semibold">No readings logged yet.</td></tr>`;
-        return;
-      }
-
-      tbodyEl.innerHTML = healthLogs.map(entry => {
-        const gEval = evaluateGlucose(entry.bg, entry.context);
-        return `
-          <tr>
-            <td class="p-3 font-semibold whitespace-nowrap">${formatDisplayDateTime(entry.datetime)}</td>
-            <td class="p-3">${CONTEXT_LABELS[entry.context] || entry.context}</td>
-            <td class="p-3 font-extrabold">${entry.bg !== null ? entry.bg + ' mg/dL' : '--'}</td>
-            <td class="p-3 font-bold">${gEval ? gEval.badge : '--'}</td>
-            <td class="p-3 font-bold">${entry.sys && entry.dia ? entry.sys + '/' + entry.dia + ' mmHg' : '--'}</td>
-            <td class="p-3">${escapeHTML(entry.note || '')}</td>
-          </tr>
-        `;
-      }).join('');
-    }
-
-    function updateReportDate() {
-      const el = document.getElementById('report-generated-date');
-      if (el) {
-        el.textContent = 'Generated on ' + new Date().toLocaleDateString('en-US', {
-          weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
-        });
-      }
+      }).filter(Boolean).join('') || `<p class="text-sm font-bold text-slate-500 py-4 text-center">No categorized blood sugar checks logged yet.</p>`;
     }
 
     /* ------------------------------------------------------------------- */
-    /* TAB 5: TWO-WAY A1C <-> eAG CONVERTER & DYNAMIC BENCHMARK HIGHLIGHT  */
+    /* TAB 5: A1C <-> eAG CONVERTER                                        */
     /* ------------------------------------------------------------------- */
     function setA1CPreset(val) {
-      const a1cInput = document.getElementById('conv-a1c');
-      if (a1cInput) {
-        a1cInput.value = Number(val).toFixed(1);
+      const input = document.getElementById('conv-a1c');
+      if (input) {
+        input.value = val;
         convertFromA1C(val);
       }
     }
 
-    function highlightActivePresetButton(currentA1C) {
-      const buttons = document.querySelectorAll('.a1c-preset-btn');
-      buttons.forEach(btn => {
-        const btnVal = parseFloat(btn.getAttribute('data-a1c'));
-        if (!isNaN(currentA1C) && Math.abs(btnVal - currentA1C) < 0.05) {
-          btn.classList.add('ring-4', 'ring-[#0F4C81]', 'border-[#0F4C81]', 'scale-[1.03]');
-        } else {
-          btn.classList.remove('ring-4', 'ring-[#0F4C81]', 'border-[#0F4C81]', 'scale-[1.03]');
-        }
-      });
-    }
+    function convertFromA1C(a1cVal) {
+      const parsed = parseFloat(a1cVal);
+      const mgdlInput = document.getElementById('conv-mgdl');
+      const badgeEl = document.getElementById('conv-status-badge');
+      const headlineEl = document.getElementById('conv-status-headline');
+      const detailEl = document.getElementById('conv-status-detail');
+      const cardEl = document.getElementById('conv-status-card');
 
-    function convertFromA1C(val) {
-      const a1c = parseFloat(val);
-      highlightActivePresetButton(a1c);
-      if (isNaN(a1c) || a1c <= 0) return;
+      if (isNaN(parsed) || parsed < 3.5 || parsed > 18.0) {
+        if (mgdlInput) mgdlInput.value = '';
+        return;
+      }
 
-      const mgdl = Math.round((28.7 * a1c) - 46.7);
-      const mmol = (mgdl / 18.0182).toFixed(1);
+      // Reverse ADAG formula: eAG = 28.7 * A1C - 46.7
+      const eAG = Math.round(28.7 * parsed - 46.7);
+      const mmol = (eAG / 18.0182).toFixed(1);
 
-      document.getElementById('conv-mgdl').value = mgdl;
-      const mmolEl = document.getElementById('conv-mmol');
-      if (mmolEl) mmolEl.value = mmol;
-      updateConverterStatusCard(a1c, mgdl, mmol);
-    }
+      if (mgdlInput) mgdlInput.value = eAG;
 
-    function convertFromMgdl(val) {
-      const mgdl = parseFloat(val);
-      if (isNaN(mgdl) || mgdl <= 0) return;
-
-      const a1c = ((mgdl + 46.7) / 28.7).toFixed(1);
-      const mmol = (mgdl / 18.0182).toFixed(1);
-
-      document.getElementById('conv-a1c').value = a1c;
-      const mmolEl = document.getElementById('conv-mmol');
-      if (mmolEl) mmolEl.value = mmol;
-      highlightActivePresetButton(parseFloat(a1c));
-      updateConverterStatusCard(parseFloat(a1c), Math.round(mgdl), mmol);
-    }
-
-    function convertFromMmol(val) {
-      const mmol = parseFloat(val);
-      if (isNaN(mmol) || mmol <= 0) return;
-
-      const mgdl = Math.round(mmol * 18.0182);
-      const a1c = ((mgdl + 46.7) / 28.7).toFixed(1);
-
-      document.getElementById('conv-mgdl').value = mgdl;
-      document.getElementById('conv-a1c').value = a1c;
-      highlightActivePresetButton(parseFloat(a1c));
-      updateConverterStatusCard(parseFloat(a1c), mgdl, mmol.toFixed(1));
-    }
-
-    function updateConverterStatusCard(a1c, mgdl, mmol) {
-      const card = document.getElementById('conv-status-card');
-      const badge = document.getElementById('conv-status-badge');
-      const headline = document.getElementById('conv-status-headline');
-      const detail = document.getElementById('conv-status-detail');
-
-      headline.textContent = `An A1C of ${a1c.toFixed(1)}% equals an estimated average blood sugar of ${mgdl} mg/dL (${mmol} mmol/L).`;
-
-      if (a1c < 5.7) {
-        card.className = 'mt-6 p-4 rounded-xl border-2 bg-emerald-50 border-emerald-400 text-emerald-950';
-        badge.className = 'inline-block bg-emerald-700 text-white text-xs font-black uppercase px-2.5 py-0.5 rounded';
-        badge.textContent = '2026 ADA: Normal Range (< 5.7%)';
-        detail.textContent = 'Your estimated average blood sugar sits in the healthy non-diabetic range. Keep up consistent post-meal movement and balanced meals.';
-      } else if (a1c <= 6.4) {
-        card.className = 'mt-6 p-4 rounded-xl border-2 bg-amber-50 border-amber-400 text-amber-950';
-        badge.className = 'inline-block bg-amber-600 text-white text-xs font-black uppercase px-2.5 py-0.5 rounded';
-        badge.textContent = '2026 ADA: Prediabetes Range (5.7% – 6.4%)';
-        detail.textContent = 'This falls within the ADA prediabetes reference range (5.7%–6.4%). Studies suggest that modest weight loss (5–7%) and regular post-meal walking may help support healthier blood sugar levels.';
+      if (parsed < 5.7) {
+        cardEl.className = 'mt-6 p-4 rounded-xl border-2 bg-emerald-50 border-emerald-400 text-emerald-950';
+        badgeEl.className = 'inline-block bg-emerald-700 text-white text-xs font-black uppercase px-2.5 py-0.5 rounded';
+        badgeEl.textContent = '2026 ADA: Normal / Optimal Range (<5.7%)';
+        headlineEl.textContent = `An A1C of ${parsed.toFixed(1)}% equals an estimated average blood sugar of ${eAG} mg/dL (${mmol} mmol/L).`;
+        detailEl.textContent = 'This falls within the normal non-diabetic reference range (<5.7%). Continuing a balanced diet, physical activity, and routine health checks supports long-term metabolic health.';
+      } else if (parsed <= 6.4) {
+        cardEl.className = 'mt-6 p-4 rounded-xl border-2 bg-amber-50 border-amber-400 text-amber-950';
+        badgeEl.className = 'inline-block bg-amber-600 text-white text-xs font-black uppercase px-2.5 py-0.5 rounded';
+        badgeEl.textContent = '2026 ADA: Prediabetes Range (5.7% – 6.4%)';
+        headlineEl.textContent = `An A1C of ${parsed.toFixed(1)}% equals an estimated average blood sugar of ${eAG} mg/dL (${mmol} mmol/L).`;
+        detailEl.textContent = 'This falls within the ADA prediabetes reference range (5.7%–6.4%). Studies suggest that modest weight loss (5–7%) and regular post-meal walking may help support healthier blood sugar levels.';
       } else {
-        card.className = 'mt-6 p-4 rounded-xl border-2 bg-red-50 border-red-400 text-red-950';
-        badge.className = 'inline-block bg-red-700 text-white text-xs font-black uppercase px-2.5 py-0.5 rounded';
-        badge.textContent = '2026 ADA: Diabetes Threshold (≥ 6.5%)';
-        detail.textContent = 'An A1C of 6.5% or higher on two separate clinical lab tests meets the diagnostic threshold for diabetes. Share your printed log with your healthcare provider.';
+        cardEl.className = 'mt-6 p-4 rounded-xl border-2 bg-red-50 border-red-400 text-red-950';
+        badgeEl.className = 'inline-block bg-red-700 text-white text-xs font-black uppercase px-2.5 py-0.5 rounded';
+        badgeEl.textContent = '2026 ADA: Diabetes Range (≥ 6.5%)';
+        headlineEl.textContent = `An A1C of ${parsed.toFixed(1)}% equals an estimated average blood sugar of ${eAG} mg/dL (${mmol} mmol/L).`;
+        detailEl.textContent = 'An A1C of 6.5% or higher meets the laboratory criteria for diabetes diagnosis when confirmed on two separate tests. Work closely with your physician on an individualized care plan.';
       }
     }
 
@@ -1825,76 +1785,122 @@
     /* TAB 6: WEIGHT LOSS IMPACT CALCULATOR                                */
     /* ------------------------------------------------------------------- */
     function calcWeightImpact() {
-      const cur = parseFloat(document.getElementById('wt-current').value);
+      const curr = parseFloat(document.getElementById('wt-current').value);
       const goal = parseFloat(document.getElementById('wt-goal').value);
-      const a1c = parseFloat(document.getElementById('wt-a1c').value);
-      const box = document.getElementById('wt-results-box');
-      if (!box || isNaN(cur) || isNaN(goal) || isNaN(a1c) || cur <= 0) return;
+      const startA1C = parseFloat(document.getElementById('wt-a1c').value);
+      const resultsBox = document.getElementById('wt-results-box');
 
-      const lostLbs = Math.max(0, cur - goal);
-      const pctLost = ((lostLbs / cur) * 100).toFixed(1);
-      const estDrop = Math.min(2.5, (parseFloat(pctLost) * 0.08)).toFixed(2);
-      const projectedA1C = Math.max(4.6, a1c - parseFloat(estDrop)).toFixed(1);
+      if (isNaN(curr) || isNaN(goal) || isNaN(startA1C) || curr <= 0 || goal <= 0) {
+        resultsBox.innerHTML = `<p class="col-span-3 text-red-600 font-bold">Please enter valid weight and A1C numbers above.</p>`;
+        return;
+      }
 
-      box.innerHTML = `
-        <div class="p-5 rounded-2xl bg-sky-50 border-2 border-[#0F4C81]">
-          <div class="text-xs font-extrabold uppercase text-[#0F4C81]">Planned Weight Reduction</div>
-          <div class="text-3xl font-black text-slate-900 mt-1">${lostLbs.toFixed(0)} lbs (${pctLost}%)</div>
-          <p class="text-xs font-semibold text-slate-700 mt-1">${parseFloat(pctLost) >= 5 ? 'Hits the 5%+ NIH DPP study benchmark!' : 'Aim for 5–7% (' + Math.round(cur * 0.05) + '–' + Math.round(cur * 0.07) + ' lbs) to align with the NIH DPP study benchmark.'}</p>
+      const diff = curr - goal;
+      const pctLoss = ((diff / curr) * 100).toFixed(1);
+
+      let estReduction = 0;
+      if (pctLoss > 0) {
+        // Approximate clinical estimate from DPP: ~0.1% - 0.15% A1C reduction per 2-3% weight loss
+        estReduction = Math.min((pctLoss / 5) * 0.3, 1.5).toFixed(1);
+      }
+
+      const projectedA1C = Math.max(startA1C - estReduction, 4.5).toFixed(1);
+
+      resultsBox.innerHTML = `
+        <div class="p-4 rounded-2xl bg-slate-50 border-2 border-slate-200">
+          <span class="text-xs font-extrabold uppercase text-slate-600">Target Weight Loss</span>
+          <div class="text-2xl font-black text-slate-900 mt-1">${diff > 0 ? diff.toFixed(1) : 0} lbs (${pctLoss}%)</div>
+          <p class="text-xs font-semibold text-slate-600 mt-1">${pctLoss >= 5 ? 'Meets or exceeds 5% DPP study target!' : 'Aiming for 5% to 7% loss maximizes health benefits.'}</p>
         </div>
-        <div class="p-5 rounded-2xl bg-emerald-50 border-2 border-emerald-400">
-          <div class="text-xs font-extrabold uppercase text-emerald-900">Illustrative A1C Estimate</div>
-          <div class="text-3xl font-black text-emerald-800 mt-1">-${estDrop}% A1C</div>
-          <p class="text-xs font-semibold text-emerald-900 mt-1">Rough educational estimate only; not a clinical prediction</p>
+
+        <div class="p-4 rounded-2xl bg-sky-50 border-2 border-[#0F4C81]">
+          <span class="text-xs font-extrabold uppercase text-[#0F4C81]">Estimated Projected A1C</span>
+          <div class="text-2xl font-black text-[#0F4C81] mt-1">~${projectedA1C}%</div>
+          <p class="text-xs font-bold text-slate-700 mt-1">Estimated drop of ~${estReduction}% based on study trends.</p>
         </div>
-        <div class="p-5 rounded-2xl bg-amber-50 border-2 border-amber-400">
-          <div class="text-xs font-extrabold uppercase text-amber-950">Illustrative Target A1C</div>
-          <div class="text-3xl font-black text-amber-950 mt-1">${projectedA1C}%</div>
-          <p class="text-xs font-semibold text-amber-900 mt-1">Illustrative figure only; individual results vary</p>
+
+        <div class="p-4 rounded-2xl bg-emerald-50 border-2 border-emerald-300">
+          <span class="text-xs font-extrabold uppercase text-emerald-900">DPP Diabetes Risk Reduction</span>
+          <div class="text-2xl font-black text-emerald-900 mt-1">${pctLoss >= 5 ? 'Up to 58% Reduction' : 'Gradual Improvement'}</div>
+          <p class="text-xs font-semibold text-emerald-900 mt-1">In the NIH DPP study, 5-7% weight loss combined with walking cut Type 2 diabetes risk by 58%.</p>
         </div>
       `;
     }
 
     /* ------------------------------------------------------------------- */
-    /* TAB 7: TOP 20 TIPS RENDERER                                         */
+    /* TAB 7: TOP 20 TIPS                                                  */
     /* ------------------------------------------------------------------- */
     function renderTop20Tips() {
-      const grid = document.getElementById('top-20-tips-grid');
-      if (!grid) return;
-      grid.innerHTML = TOP_20_TIPS.map(tip => `
-        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-[#0F4C81] transition">
-          <h3 class="font-extrabold text-[#0F4C81] text-base">${tip.title}</h3>
-          <p class="text-sm text-slate-700 mt-1">${tip.desc}</p>
+      const container = document.getElementById('top-20-tips-grid');
+      if (!container) return;
+      container.innerHTML = TOP_20_TIPS.map(tip => `
+        <div class="p-4 rounded-2xl bg-slate-50 border-2 border-slate-200 hover:border-[#0F4C81] transition">
+          <h2 class="font-extrabold text-[#0F4C81] text-base mb-1">${escapeHTML(tip.title)}</h2>
+          <p class="text-sm font-medium text-slate-700">${escapeHTML(tip.desc)}</p>
         </div>
       `).join('');
     }
 
     /* ------------------------------------------------------------------- */
-    /* MODAL & SECURITY HELPERS                                            */
+    /* TAB 8: DOCTOR REPORT GENERATION                                     */
     /* ------------------------------------------------------------------- */
-    function openLegalModal() {
-      const m = document.getElementById('legal-modal');
-      if (m) {
-        m.classList.remove('hidden');
-        m.classList.add('flex');
+    function updateReportDate() {
+      const el = document.getElementById('report-generated-date');
+      if (el) {
+        el.textContent = `Report Generated: ${new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}`;
       }
     }
 
-    function closeLegalModal() {
-      const m = document.getElementById('legal-modal');
-      if (m) {
-        m.classList.add('hidden');
-        m.classList.remove('flex');
-      }
-    }
+    function renderTab8Report(avgBg, estA1C, avgSys, avgDia) {
+      const summaryBox = document.getElementById('doctor-report-summary');
+      const tbody = document.getElementById('doctor-report-tbody');
+      if (!summaryBox || !tbody) return;
 
-    function escapeHTML(str) {
-      return String(str)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#039;');
+      summaryBox.innerHTML = `
+        <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-300">
+          <div class="text-xs font-extrabold uppercase text-slate-600">Total Logs</div>
+          <div class="text-xl font-black text-slate-900 mt-0.5">${healthLogs.length}</div>
+        </div>
+        <div class="p-3.5 rounded-xl bg-sky-50 border border-sky-300">
+          <div class="text-xs font-extrabold uppercase text-[#0F4C81]">Average Glucose</div>
+          <div class="text-xl font-black text-[#0F4C81] mt-0.5">${avgBg ? avgBg + ' mg/dL' : '--'}</div>
+        </div>
+        <div class="p-3.5 rounded-xl bg-emerald-50 border border-emerald-300">
+          <div class="text-xs font-extrabold uppercase text-emerald-900">Estimated A1C</div>
+          <div class="text-xl font-black text-emerald-900 mt-0.5">${estA1C ? estA1C + '%' : '--'}</div>
+        </div>
+        <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-300">
+          <div class="text-xs font-extrabold uppercase text-slate-600">Average Blood Pressure</div>
+          <div class="text-xl font-black text-slate-900 mt-0.5">${avgSys && avgDia ? avgSys + '/' + avgDia : '--'}</div>
+        </div>
+      `;
+
+      if (healthLogs.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="6" class="p-6 text-center text-slate-500 font-bold">
+              No entries recorded. Enter readings on Tab 1 to generate your printable doctor report.
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      tbody.innerHTML = healthLogs.map(entry => {
+        const gEval = evaluateGlucose(entry.bg, entry.context);
+        const bpEval = evaluateBP(entry.sys, entry.dia);
+
+        return `
+          <tr>
+            <td class="p-3 font-semibold whitespace-nowrap">${formatDisplayDateTime(entry.datetime)}</td>
+            <td class="p-3 font-medium">${CONTEXT_LABELS[entry.context] || entry.context}</td>
+            <td class="p-3 font-black text-slate-900">${entry.bg !== null ? entry.bg + ' mg/dL' : '--'}</td>
+            <td class="p-3">${gEval ? `<span class="text-xs font-bold ${gEval.pillClass} px-2 py-0.5 rounded">${gEval.badge}</span>` : '--'}</td>
+            <td class="p-3 font-bold">${entry.sys && entry.dia ? `${entry.sys}/${entry.dia} mmHg` : '--'}</td>
+            <td class="p-3 text-slate-700">${escapeHTML(entry.note || '')}</td>
+          </tr>
+        `;
+      }).join('');
     }
   </script>
 </body>
